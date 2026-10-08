@@ -1,0 +1,204 @@
+/* cards-product: 2-up full-bleed product tiles (source .elementor-element-c28d200 / -6cab8f9) */
+
+main > .section > .cards-product-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.cards-product > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* tile: image is a cover background, copy is bottom-aligned */
+.cards-product > ul > li {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 340px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cards-product .cards-product-card-image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  line-height: 0;
+}
+
+.cards-product .cards-product-card-image p {
+  margin: 0;
+  height: 100%;
+}
+
+.cards-product .cards-product-card-image picture {
+  display: block;
+  height: 100%;
+}
+
+.cards-product .cards-product-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.cards-product .cards-product-logo img {
+  display: block;
+  width: auto;
+  height: 64px;
+}
+
+.cards-product > ul > li:nth-child(even) .cards-product-card-image img {
+  object-position: 100% 50%;
+}
+
+/* body: flex column, 5px gap mobile / 9px desktop */
+.cards-product .cards-product-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 140px 20px 20px;
+  color: var(--inverse-text-color);
+}
+
+.cards-product .cards-product-card-content {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  padding: 0 3px;
+}
+
+.cards-product .cards-product-card-body p,
+.cards-product .cards-product-card-body h3 {
+  margin: 0;
+  color: var(--inverse-text-color);
+}
+
+.cards-product .cards-product-card-content > p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  padding-bottom: 10px;
+}
+
+.cards-product .cards-product-card-content > p.cards-product-eyebrow {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  padding-bottom: 0;
+}
+
+.cards-product .cards-product-card-content > h3 {
+  font-family: var(--heading-font-family);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+/* heading without an eyebrow (Credit Cards tile) is regular weight on the source */
+.cards-product .cards-product-card-content > h3:first-child {
+  font-weight: 400;
+}
+
+.cards-product .cards-product-card-content > p.cards-product-logo {
+  padding-bottom: 0;
+  line-height: 0;
+}
+
+.cards-product .cards-product-card-body sup {
+  position: relative;
+  top: -0.5em;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+.cards-product .cards-product-cta {
+  display: block;
+}
+
+main .cards-product a.button:any-link {
+  margin: 0;
+  padding: 10px 30px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.cards-product .cards-product-card-body p.cards-product-note {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 18.15px;
+}
+
+@media (width >= 900px) {
+  .cards-product > ul {
+    grid-template-columns: 50% 1fr;
+  }
+
+  .cards-product > ul > li {
+    min-height: 500px;
+  }
+
+  /* first of two stacked instances: 480px tiles + 20px gap below (source padding-bottom) */
+  main > .section.cards-product-container:has(+ .section.cards-product-container) .cards-product {
+    padding-bottom: 20px;
+  }
+
+  main > .section.cards-product-container:has(+ .section.cards-product-container) .cards-product > ul > li {
+    min-height: 480px;
+  }
+
+  .cards-product .cards-product-card-body {
+    gap: 9px;
+    padding: 70px;
+  }
+
+  .cards-product .cards-product-card-content {
+    min-height: 160px;
+    padding: 0;
+  }
+
+  .cards-product .cards-product-card-content > p {
+    width: 65.164%;
+    font-size: 18px;
+    line-height: 23px;
+    padding-bottom: 0;
+  }
+
+  .cards-product .cards-product-card-content > p.cards-product-eyebrow,
+  .cards-product .cards-product-card-content > p.cards-product-logo {
+    width: auto;
+  }
+
+  .cards-product .cards-product-card-content > p.cards-product-eyebrow {
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .cards-product .cards-product-card-content > h3 {
+    font-size: 32px;
+    line-height: 55px;
+  }
+
+  .cards-product .cards-product-card-content > h3:first-child {
+    line-height: 52.8px;
+  }
+
+  main .cards-product a.button:any-link {
+    padding: 13px 85px;
+    font-size: var(--button-font-size);
+    line-height: 16px;
+  }
+}

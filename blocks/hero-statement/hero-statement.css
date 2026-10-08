@@ -1,0 +1,124 @@
+/* full-bleed band: undo the global section content max-width/padding */
+main > .section > .hero-statement-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+/* mobile base (source <= 767px) */
+.hero-statement {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+  margin-top: 35px;
+  padding: 0 6%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: var(--dark-color);
+  color: var(--inverse-text-color);
+  text-align: center;
+}
+
+/* decorative diagonal stripes, above the video and below the text */
+.hero-statement::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url('./stripes-small.png');
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.hero-statement .hero-statement-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  container-type: size;
+}
+
+.hero-statement .hero-statement-media > div:not(.hero-statement-background),
+.hero-statement .hero-statement-media picture {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-statement .hero-statement-media p {
+  margin: 0;
+}
+
+.hero-statement .hero-statement-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-statement .hero-statement-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-statement .hero-statement-background iframe,
+.hero-statement .hero-statement-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 177.78cqh);
+  height: max(56.25cqw, 100cqh);
+  border: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.hero-statement .hero-statement-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.hero-statement .hero-statement-content p {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 25px;
+  color: var(--inverse-text-color);
+}
+
+/* tablet (source 768px - 1080px) */
+@media (width >= 768px) {
+  .hero-statement {
+    min-height: 822px;
+    margin-top: 0;
+    padding: 10px 5%;
+  }
+
+  .hero-statement::after {
+    background-image: url('./stripes.png');
+  }
+
+  .hero-statement .hero-statement-content p {
+    font-size: 35px;
+    line-height: 57px;
+  }
+}
+
+/* desktop (source >= 1081px) */
+@media (width >= 1081px) {
+  .hero-statement::after {
+    background-position: 100% 120%;
+  }
+
+  .hero-statement .hero-statement-content p {
+    font-size: 50px;
+  }
+}

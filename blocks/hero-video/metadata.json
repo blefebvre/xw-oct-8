@@ -1,0 +1,45 @@
+{
+  "variantName": "hero-video",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Full-bleed banner with a muted, autoplaying, looping background video (Vimeo/YouTube/MP4 link in the text) behind a right-aligned headline",
+    "summary": "Tall full-bleed banner with autoplay muted looping background video, grey overlay, light-weight white H1 right-aligned at about 40% width, red accent bar below"
+  },
+  "contentPattern": {
+    "structure": "row 1 = optional background image (UE fields image + imageAlt), used as poster/fallback; row 2 = rich text (UE field text) with the H1 and a paragraph containing a link to the background video (Vimeo, YouTube or .mp4). The link is removed from view and replaced by a muted, autoplaying, looping background video",
+    "source": "get_block_details /block-collection/hero and blocks/hero/_hero.json (model fields image, imageAlt, text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Block name plus variant, e.g. Hero (video)"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Background image (field image/imageAlt), optional"
+        ]
+      },
+      {
+        "row": 3,
+        "cells": [
+          "Rich text (field text): heading or statement, subheading, CTA link; the background-video URL as a link for the video variants"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "hero-video",
+      "hero-statement",
+      "hero-promo"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "hero-video"
+  ],
+  "usage": "Top-of-page brand banner with background video.",
+  "reuseGuidance": "Use when the banner background is a video. For a static photo background use hero-promo.",
+  "sourceUrl": "https://bradescobank.com/"
+}

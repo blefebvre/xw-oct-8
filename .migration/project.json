@@ -1,0 +1,11 @@
+{
+  "type": "xwalk",
+  "sites": {
+    "xw-oct-8": {
+      "previewOrg": "blefebvre",
+      "previewSite": "xw-oct-8",
+      "contentHostUrl": "author-p130360-e1272151.adobeaemcloud.com",
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

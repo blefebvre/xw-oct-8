@@ -1,0 +1,45 @@
+{
+  "variantName": "hero-statement",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Dark full-bleed band with a background video (link in the text) and a large centered statement paragraph",
+    "summary": "Black full-bleed band with background video, large centered white statement paragraph, decorative diagonal stripes bottom right"
+  },
+  "contentPattern": {
+    "structure": "row 1 = optional background image (UE fields image + imageAlt), used as fallback; row 2 = rich text (UE field text) with the statement paragraph and a paragraph containing a link to the background video (Vimeo, YouTube or .mp4). The link is removed from view and replaced by a muted, autoplaying, looping background video",
+    "source": "get_block_details /block-collection/hero and blocks/hero/_hero.json (model fields image, imageAlt, text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Block name plus variant, e.g. Hero (video)"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Background image (field image/imageAlt), optional"
+        ]
+      },
+      {
+        "row": 3,
+        "cells": [
+          "Rich text (field text): heading or statement, subheading, CTA link; the background-video URL as a link for the video variants"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "hero-video",
+      "hero-statement",
+      "hero-promo"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "hero-statement"
+  ],
+  "usage": "Mid-page brand statement band over video.",
+  "reuseGuidance": "Use for a single centered statement over video; the video link is removed from view and turned into the background.",
+  "sourceUrl": "https://bradescobank.com/"
+}

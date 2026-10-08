@@ -1,0 +1,45 @@
+{
+  "variantName": "hero-promo",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Medium-height full-bleed photo background with a darkening overlay and left-aligned heading, paragraph and CTA",
+    "summary": "Medium-height full-bleed photo background with dark overlay, left-aligned white H3, paragraph and red pill CTA"
+  },
+  "contentPattern": {
+    "structure": "row 1 = background image (UE fields image + imageAlt); row 2 = rich text (UE field text) with heading, paragraph and a CTA link",
+    "source": "get_block_details /block-collection/hero and blocks/hero/_hero.json (model fields image, imageAlt, text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Block name plus variant, e.g. Hero (video)"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Background image (field image/imageAlt), optional"
+        ]
+      },
+      {
+        "row": 3,
+        "cells": [
+          "Rich text (field text): heading or statement, subheading, CTA link; the background-video URL as a link for the video variants"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "hero-video",
+      "hero-statement",
+      "hero-promo"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "hero-promo"
+  ],
+  "usage": "Promotional banner pointing to a content hub or campaign.",
+  "reuseGuidance": "Use for photo-backed promo banners with a CTA. For video backgrounds use hero-video.",
+  "sourceUrl": "https://bradescobank.com/"
+}

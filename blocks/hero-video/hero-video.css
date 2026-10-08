@@ -1,0 +1,123 @@
+/* full-bleed: release the section's max-width / side padding */
+main > .section > .hero-video-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+/* dark-red divider bar under the hero (source .elementor-element-df3b3d3) */
+main > .section > .hero-video-wrapper::after {
+  content: '';
+  display: block;
+  position: relative;
+  height: 19px;
+  margin-top: -1px;
+  background-color: var(--brand-dark-red);
+}
+
+.hero-video {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  min-height: 85vh;
+  padding: 0 6vw;
+  overflow: hidden;
+}
+
+/* source section overlay: sits under the video, visible until the video paints */
+.hero-video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--dark-color);
+  opacity: 0.2;
+}
+
+.hero-video .hero-video-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  container-type: size;
+}
+
+.hero-video .hero-video-media > div:not(.hero-video-background),
+.hero-video .hero-video-media picture {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-video .hero-video-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-video .hero-video-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-video .hero-video-background iframe,
+.hero-video .hero-video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 177.78cqh);
+  height: max(56.25cqw, 100cqh);
+  border: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* source overlay: black at 20% opacity over the video */
+.hero-video .hero-video-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--dark-color);
+  opacity: 0.2;
+}
+
+.hero-video .hero-video-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 10px 40px;
+  color: var(--inverse-text-color);
+}
+
+.hero-video .hero-video-content h1 {
+  margin: 0 0 17.8px;
+  font-family: var(--heading-font-family);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  color: var(--inverse-text-color);
+}
+
+.hero-video .hero-video-content p {
+  color: var(--inverse-text-color);
+}
+
+@media (width >= 900px) {
+  .hero-video {
+    justify-content: flex-end;
+    padding: 0 max(5vw, calc((100% - 1700px) / 2));
+  }
+
+  /* source text column: 42% of the 1296px inner row minus the 20px column gap */
+  .hero-video .hero-video-content {
+    width: calc(42% - 20px);
+    padding: 10px 10px 86px;
+  }
+
+  .hero-video .hero-video-content h1 {
+    margin: 0 0 22px;
+    font-size: var(--heading-font-size-xxl);
+    line-height: 45px;
+  }
+}

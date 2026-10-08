@@ -1,0 +1,66 @@
+/* Brand tokens extracted from https://bradescobank.com/ */
+:root {
+  /* colors */
+  --background-color: #fff;
+  --text-color: #535353;
+  --link-color: #535353;
+  --link-hover-color: #ba0a29;
+  --brand-primary: #ba0a29;
+  --brand-primary-hover: #920820;
+  --brand-dark-red: #900f15;
+  --light-color: #f2f5f7;
+  --dark-color: #000;
+  --overlay-background-color: rgb(0 0 0 / 40%);
+  --inverse-text-color: #fff;
+
+  /* fonts */
+  --body-font-family: bradescosans, bradescosans-fallback, arial, sans-serif;
+  --heading-font-family: bradescosans, bradescosans-fallback, arial, sans-serif;
+
+  /* body sizes */
+  --body-font-size-m: 16px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+
+  /* heading sizes (mobile) */
+  --heading-font-size-xxl: 32px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+
+  /* spacing */
+  --section-padding: 0;
+  --content-max-width: 1296px;
+  --intro-section-min-height: 180px;
+
+  /* nav heights */
+  --nav-height: 64px;
+  --breadcrumbs-height: 34px;
+  --header-height: var(--nav-height);
+
+  /* buttons */
+  --button-radius: 100px;
+  --button-font-size: 16px;
+  --button-font-weight: 500;
+  --button-letter-spacing: 2px;
+  --button-padding: 13px 40px;
+  --button-transition: 0.3s;
+}
+
+@media (width >= 900px) {
+  :root {
+    --body-font-size-m: 18px;
+    --body-font-size-s: 16px;
+    --body-font-size-xs: 14px;
+
+    /* heading sizes (desktop, from source computed styles) */
+    --heading-font-size-xxl: 40px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 24px;
+    --heading-font-size-s: 20px;
+    --heading-font-size-xs: 18px;
+  }
+}

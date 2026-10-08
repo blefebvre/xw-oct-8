@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-segment",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Edge-to-edge row of tall portrait photo tiles, each fully linked, with an uppercase label at the bottom",
+    "summary": "4-up edge-to-edge tall portrait photo tiles, label overlaid in white uppercase at bottom left, whole tile is a link, hover lift"
+  },
+  "contentPattern": {
+    "structure": "cell 1 = portrait image (UE fields image + imageAlt); cell 2 = rich text (UE field text) with one link whose text is the tile label. The whole tile becomes clickable",
+    "source": "get_block_details /block-collection/cards and blocks/cards/_cards.json (child model card: image, imageAlt, text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Block name plus variant, e.g. Cards (segment)"
+        ]
+      },
+      {
+        "row": "2..N (one per card)",
+        "cells": [
+          "Image (field image/imageAlt)",
+          "Rich text (field text): eyebrow paragraph, heading, description, CTA link"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "cards-segment",
+      "cards-product"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-segment"
+  ],
+  "usage": "Audience/segment navigation tiles (Private Bank, Personal Bank, ...).",
+  "reuseGuidance": "Use for image-led navigation tiles with a single link label each. For tiles with heading, copy and CTA use cards-product.",
+  "sourceUrl": "https://bradescobank.com/"
+}

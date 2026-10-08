@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-product",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Two-up full-bleed product tiles with the image as darkened background and overlaid eyebrow, heading, copy, CTA and optional footnote",
+    "summary": "2-up full-bleed tiles with the image as darkened background, overlaid white eyebrow, H3, text and red pill CTA bottom left, optional footnote"
+  },
+  "contentPattern": {
+    "structure": "cell 1 = background image (UE fields image + imageAlt); cell 2 = rich text (UE field text): optional eyebrow paragraph, heading (or a logo image paragraph), description, CTA link paragraph, optional footnote paragraphs after the CTA",
+    "source": "get_block_details /block-collection/cards and blocks/cards/_cards.json (child model card: image, imageAlt, text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Block name plus variant, e.g. Cards (segment)"
+        ]
+      },
+      {
+        "row": "2..N (one per card)",
+        "cells": [
+          "Image (field image/imageAlt)",
+          "Rich text (field text): eyebrow paragraph, heading, description, CTA link"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "cards-segment",
+      "cards-product"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-product"
+  ],
+  "usage": "Product promotion grid (Investments, Lending, Credit Cards, Zelle).",
+  "reuseGuidance": "Use for product tiles with copy and a CTA over a background photo. An image/logo paragraph can replace the heading.",
+  "sourceUrl": "https://bradescobank.com/"
+}
