@@ -5,7 +5,11 @@
       "previewOrg": "blefebvre",
       "previewSite": "xw-oct-8",
       "contentHostUrl": "author-p141866-e1455422.adobeaemcloud.com",
-      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
+      "aemSitePath": "/content/xw-oct-8",
+      "aemAssetsFolderPath": "/content/dam/xw-oct-8",
+      "aemSiteName": "xw-oct-8",
+      "aemSiteTitle": "blefebvr-xw-oct-8"
     }
   }
 }
