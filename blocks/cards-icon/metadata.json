@@ -1,0 +1,35 @@
+{
+  "variantName": "cards-icon",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Grid of separate elevated white cards, each led by a small centred icon, with a heading, optional description and a single call-to-action button",
+    "summary": "Separate white cards (1px #f7f7f7 border, soft rgba(0,0,0,.1) 0 4px 12px shadow, square corners), 3 per row on desktop with ~20px gaps (a short last row stays left aligned, one column wide), stacking to 1 column on mobile. Each card centres its content vertically: a small red line icon (~41x42px), a #575757 26px/32px H3 title (line breaks kept), an optional #535353 16px description, and a red pill button (#ba0a29, white uppercase 16px/500, 2px letter-spacing, 100px radius) linking to a document."
+  },
+  "contentPattern": {
+    "structure": "Cards with images: one row per card with two cells (UE fields image + imageAlt, then rich text). Cell 1: the icon image. Cell 2: heading, optional description paragraph(s), then a paragraph holding only the call-to-action link.",
+    "source": "migration-work/authoring-analysis.json blockStructures.cards-icon; get_block_details /block-collection/cards (with images); blocks/cards/_cards.json",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Cards Icon"
+        ]
+      },
+      {
+        "row": "2..N (one per card)",
+        "cells": [
+          "Icon image (field image, alt in imageAlt)",
+          "Rich text (field text): <h3>Title</h3><p>Optional description</p><p><a href=\"...pdf\">VIEW</a></p>"
+        ]
+      }
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-icon"
+  ],
+  "usage": "CRA Public File document grid (10 cards: Branch and Office Location, Public Comments, CRA FDIC Performance Evaluation, HMDA Disclosure Statement, CRA Disclosure Statements, Area Assessment Maps, Branch Openings/Closure & Moves, Products/Services & Fees, Name Change, Hours of Operation). Expected to be reused for icon-led feature/link cards on security, about-us and corporate pages.",
+  "reuseGuidance": "Use for grids of separate cards that each start with a small icon and end with one button. Put the icon alone in the first cell; in the second cell use a heading, optional description, and the link alone in its last paragraph so it renders as the button. Descriptions and the icon may be omitted per card. Links to PDFs open in a new tab. Not for photo cards (use cards) or image-less tiles inside one shared card (use cards-download).",
+  "sourceUrl": "https://bradescobank.com/en/cra-public-file/"
+}

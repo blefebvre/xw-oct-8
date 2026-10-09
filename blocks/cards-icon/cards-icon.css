@@ -1,0 +1,175 @@
+/*
+ * cards-icon: grid of separate elevated white cards, each with a small centred icon,
+ * a heading, an optional description and a single call-to-action button.
+ * Source: bradescobank.com/en/cra-public-file .elementor-element-220b4b9
+ * (values in migration-work/cards-icon-extracted.css).
+ * Source breakpoints: 690px (container 88% -> 90%), 768px (1 -> 3 columns, larger button),
+ * 770px (22px -> 26px headings).
+ */
+
+/* the block spans 88% (90% from 690px) of the viewport up to 1700px */
+main > .section > .cards-icon-wrapper {
+  box-sizing: border-box;
+  width: 88%;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* first card 78px below the previous section; 110px (70px from 768px) under the last card */
+.cards-icon {
+  padding: 78px 0 110px;
+}
+
+.cards-icon > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+/* card: icon at the top, button at the bottom, the rest spread evenly in between */
+.cards-icon > ul > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #f7f7f7;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+/* the body's heading, text and button take part in the card's spacing directly */
+.cards-icon .cards-icon-card-body {
+  display: contents;
+}
+
+.cards-icon .cards-icon-card-image,
+.cards-icon .cards-icon-card-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+.cards-icon .cards-icon-card-image picture,
+.cards-icon .cards-icon-card-image img {
+  display: inline-block;
+}
+
+.cards-icon .cards-icon-card-image img {
+  width: auto;
+  height: 42px;
+}
+
+.cards-icon h3 {
+  margin: 0 0 36.6px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 29px;
+  color: #575757;
+}
+
+.cards-icon .cards-icon-card-body > p:not(.cards-icon-cta) {
+  margin: 0 0 40px;
+  font-size: var(--body-font-size-s);
+  line-height: 26.4px;
+  color: var(--text-color);
+}
+
+.cards-icon .cards-icon-cta {
+  display: block;
+  margin: 0;
+  padding: 10px 0;
+  line-height: 0;
+}
+
+main .cards-icon a.button:any-link {
+  margin: 0;
+  padding: 10px 30px;
+  font-size: var(--body-font-size-xs);
+  line-height: 14px;
+}
+
+@media (width >= 690px) {
+  main > .section > .cards-icon-wrapper {
+    width: 90%;
+  }
+}
+
+@media (width >= 768px) {
+  .cards-icon {
+    padding-bottom: 70px;
+  }
+
+  .cards-icon > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* matches the source's single-card last row */
+  .cards-icon > ul > li {
+    min-height: 374px;
+  }
+
+  .cards-icon h3 {
+    margin-bottom: 16.6px;
+  }
+
+  .cards-icon .cards-icon-card-body > p:not(.cards-icon-cta) {
+    margin-bottom: 0;
+  }
+
+  main .cards-icon a.button:any-link {
+    padding: 13px 50px 13px 55px;
+    font-size: var(--button-font-size);
+    line-height: 16px;
+  }
+}
+
+@media (width >= 770px) {
+  .cards-icon h3 {
+    margin-bottom: 17.8px;
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
+
+/* intro statement section right before the grid (source .elementor-element-518a5cc):
+ * a 300px band with the statement centred in it, as wide as the grid */
+main .section.centered:has(+ .section.cards-icon-container) {
+  min-height: 300px;
+  padding: 0;
+}
+
+main .section.centered:has(+ .section.cards-icon-container) > .default-content-wrapper {
+  width: 88%;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+main .section.centered:has(+ .section.cards-icon-container) h3 {
+  margin: 0 0 16.6px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 29px;
+  color: var(--text-color);
+}
+
+@media (width >= 690px) {
+  main .section.centered:has(+ .section.cards-icon-container) > .default-content-wrapper {
+    width: 90%;
+  }
+}
+
+@media (width >= 770px) {
+  main .section.centered:has(+ .section.cards-icon-container) h3 {
+    margin-bottom: 17.8px;
+    font-size: 26px;
+    line-height: 32px;
+  }
+}

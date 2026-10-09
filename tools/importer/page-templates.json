@@ -347,6 +347,66 @@
       ],
       "representativeUrl": "https://bradescobank.com/en/cra-public-file/",
       "description": "Photo banner with title, intro text and a grid of document cards with buttons",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".elementor-element-2d43f3e"
+          ]
+        },
+        {
+          "name": "cards-icon",
+          "instances": [
+            ".elementor-element-220b4b9"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "defaultContent": [],
+          "id": "s1",
+          "name": "Page title banner",
+          "selector": [
+            ".elementor-element-2d43f3e"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-b513d82 h3"
+          ],
+          "id": "s2",
+          "name": "Introductory statement",
+          "selector": [
+            ".elementor-element-518a5cc"
+          ],
+          "style": "centered",
+          "blocks": []
+        },
+        {
+          "defaultContent": [],
+          "id": "s3",
+          "name": "Document cards",
+          "selector": [
+            ".elementor-element-220b4b9"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "security",
+      "urls": [
+        "https://bradescobank.com/en/security/"
+      ],
+      "representativeUrl": "https://bradescobank.com/en/security/",
+      "description": "Photo banner, intro columns, accordion of security tips, icon list",
       "blocks": [],
       "sections": []
     }

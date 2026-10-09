@@ -12,6 +12,7 @@
       "button",
       "cards",
       "cards-download",
+      "cards-icon",
       "cards-product",
       "cards-segment",
       "carousel",
@@ -46,6 +47,12 @@
     "id": "cards-download",
     "components": [
       "cards-download-card"
+    ]
+  },
+  {
+    "id": "cards-icon",
+    "components": [
+      "cards-icon-card"
     ]
   },
   {
