@@ -88,6 +88,51 @@ function buildLogoStrip(container) {
 }
 
 /**
+ * Resolves with the site header's dark (solid-bar) logo once the header has
+ * rendered, or null if it does not appear in time.
+ * @returns {Promise<HTMLImageElement|null>}
+ */
+function waitForHeaderLogo(timeout = 10000) {
+  const find = () => document.querySelector('header .nav-brand .nav-logo-sticky');
+  return new Promise((resolve) => {
+    if (find()) {
+      resolve(find());
+      return;
+    }
+    const header = document.querySelector('header') || document.body;
+    const observer = new MutationObserver(() => {
+      if (!find()) return;
+      observer.disconnect();
+      resolve(find());
+    });
+    observer.observe(header, { childList: true, subtree: true });
+    setTimeout(() => {
+      observer.disconnect();
+      resolve(find());
+    }, timeout);
+  });
+}
+
+/**
+ * Fills an empty brand link with the header's dark logo (same artwork),
+ * for content where the footer logo image was not published.
+ * @param {Element} brand footer brand paragraph
+ */
+async function fillMissingBrandLogo(brand) {
+  const link = brand.querySelector('a');
+  if (!link || link.querySelector('img')) return;
+  const source = await waitForHeaderLogo();
+  if (!source) return;
+  const logo = document.createElement('img');
+  logo.src = source.currentSrc || source.src;
+  logo.alt = link.getAttribute('aria-label') || source.alt || '';
+  logo.width = 140;
+  logo.height = 50;
+  logo.loading = 'lazy';
+  link.append(logo);
+}
+
+/**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
@@ -124,4 +169,7 @@ export default async function decorate(block) {
   });
 
   block.append(footer);
+
+  const brand = footer.querySelector('.footer-brand');
+  if (brand) fillMissingBrandLogo(brand);
 }
