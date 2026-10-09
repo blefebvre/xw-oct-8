@@ -91,6 +91,9 @@ function toggleMenu(nav, forceExpanded = null) {
 function buildMenu(nav, list) {
   list.querySelectorAll(':scope > li').forEach((li) => {
     const sub = li.querySelector(':scope > ul');
+    // authored content may wrap a plain menu link in a paragraph
+    const wrapped = li.querySelector(':scope > p > a');
+    if (!sub && wrapped) wrapped.parentElement.replaceWith(wrapped);
     const link = li.querySelector(':scope > a');
     if (sub) {
       const label = li.querySelector(':scope > p');
@@ -218,14 +221,19 @@ export default async function decorate(block) {
   let brandLink = null;
   let drawerLogo = null;
   if (brandSection) {
+    // logos may sit inside the link or in their own paragraphs next to it
     brandLink = brandSection.querySelector('a');
     const [defaultLogo, stickyLogo, menuLogo] = [...brandSection.querySelectorAll('img')];
     if (brandLink) {
+      const label = brandLink.textContent.trim();
+      if (label) brandLink.setAttribute('aria-label', label);
+      [...brandLink.childNodes].forEach((n) => { if (!n.querySelector || !n.querySelector('img')) n.remove(); });
       [defaultLogo, stickyLogo].forEach((img, i) => {
         if (!img) return;
         img.classList.add(i === 0 ? 'nav-logo-default' : 'nav-logo-sticky');
         img.width = 140;
         img.height = 50;
+        img.loading = 'eager';
         brandLink.append(img);
       });
       brand.append(brandLink);

@@ -37,11 +37,54 @@ function buildColumns(section) {
   // a list made only of image links renders as an icon row
   columns.querySelectorAll('ul').forEach((ul) => {
     const items = [...ul.children];
-    if (items.length && items.every((li) => li.querySelector('a > img') && !li.textContent.trim())) {
+    if (items.length && items.every((li) => li.querySelector('a img') && !li.textContent.trim())) {
       ul.classList.add('footer-icons');
     }
   });
   return columns;
+}
+
+/**
+ * Logo strip: the linked image (inside the link, or in the paragraph just before
+ * it) becomes the brand logo; the remaining images form a badge row with thin
+ * dividers. Works whether images sit inside links or in their own paragraphs.
+ * @param {Element} container logo strip content
+ */
+function buildLogoStrip(container) {
+  const imgs = [...container.querySelectorAll('img')];
+  const link = container.querySelector('a');
+  let logo = link ? link.querySelector('img') : imgs[0];
+  if (link && !logo) {
+    // image authored in the paragraph right before the link paragraph
+    const prev = link.closest('p') && link.closest('p').previousElementSibling;
+    logo = prev && !prev.textContent.trim() ? prev.querySelector('img') : null;
+  }
+  const badges = imgs.filter((img) => img !== logo);
+  const brand = document.createElement('p');
+  brand.className = 'footer-brand';
+  if (logo || link) {
+    if (link) {
+      const label = link.textContent.trim();
+      if (label) link.setAttribute('aria-label', label);
+      link.textContent = '';
+      if (logo) link.append(logo);
+      brand.append(link);
+    } else {
+      brand.append(logo);
+    }
+  }
+  const row = document.createElement('p');
+  row.className = 'footer-badges';
+  badges.forEach((img, i) => {
+    if (i) {
+      const divider = document.createElement('span');
+      divider.className = 'footer-divider';
+      divider.setAttribute('aria-hidden', 'true');
+      row.append(divider);
+    }
+    row.append(img);
+  });
+  container.replaceChildren(brand, row);
 }
 
 /**
@@ -70,17 +113,8 @@ export default async function decorate(block) {
     footer.append(wrap);
   });
 
-  // a paragraph holding only images gets thin dividers between them
-  footer.querySelectorAll('.footer-logos p').forEach((p) => {
-    const imgs = [...p.querySelectorAll(':scope > img')];
-    if (imgs.length < 2 || p.textContent.trim()) return;
-    imgs.slice(1).forEach((img) => {
-      const divider = document.createElement('span');
-      divider.className = 'footer-divider';
-      divider.setAttribute('aria-hidden', 'true');
-      img.before(divider);
-    });
-  });
+  const logos = footer.querySelector('.footer-logos .footer-section-inner');
+  if (logos) buildLogoStrip(logos);
 
   // authors mark new-tab links with a trailing #_blank
   footer.querySelectorAll('a[href$="#_blank"]').forEach((a) => {

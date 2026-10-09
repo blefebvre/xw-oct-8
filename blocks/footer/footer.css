@@ -165,18 +165,18 @@ footer .footer-logos .footer-section-inner {
   padding: 40px 0;
 }
 
-footer .footer-logos .footer-section-inner > p:first-child img {
+footer .footer-logos .footer-brand img {
   width: 140px;
   height: 50px;
 }
 
-footer .footer-logos .footer-section-inner > p:last-child {
+footer .footer-logos .footer-badges {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-footer .footer-logos .footer-section-inner > p:last-child img {
+footer .footer-logos .footer-badges img {
   width: auto;
   height: 30px;
 }
@@ -222,15 +222,15 @@ footer .footer-logos .footer-divider {
 
 /* breakpoint-exception: source switches to full-size compliance logos above 768px */
 @media (width >= 769px) {
-  footer .footer-logos .footer-section-inner > p:last-child {
+  footer .footer-logos .footer-badges {
     height: 50px;
   }
 
-  footer .footer-logos .footer-section-inner > p:last-child img {
+  footer .footer-logos .footer-badges img {
     height: 45px;
   }
 
-  footer .footer-logos .footer-section-inner > p:last-child .footer-divider + img {
+  footer .footer-logos .footer-badges .footer-divider + img {
     height: 40px;
   }
 }
