@@ -60,6 +60,10 @@ const TRACKING_ATTRS = [
 export default function transform(hookName, element, payload) {
   if (hookName === 'beforeTransform') {
     WebImporter.DOMUtils.remove(element, BEFORE_SELECTORS);
+    // Elementor containers hidden at every breakpoint are never visible
+    WebImporter.DOMUtils.remove(element, [
+      '.elementor-hidden-desktop.elementor-hidden-laptop.elementor-hidden-tablet_extra.elementor-hidden-tablet.elementor-hidden-mobile',
+    ]);
   }
 
   if (hookName === 'afterTransform') {

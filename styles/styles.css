@@ -247,3 +247,9 @@ main .section.centered h2 {
   line-height: 37px;
   margin: 0 0 19.6px;
 }
+
+/* light grey band (#f6f6f6) */
+main .section.light-grey {
+  margin: 0;
+  background-color: #f6f6f6;
+}

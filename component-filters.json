@@ -15,10 +15,12 @@
       "cards-segment",
       "carousel",
       "columns",
+      "columns-card-list",
       "embed",
       "form",
       "fragment",
       "hero",
+      "hero-banner",
       "hero-promo",
       "hero-statement",
       "hero-video",
@@ -60,6 +62,12 @@
     "id": "carousel",
     "components": [
       "carousel-item"
+    ]
+  },
+  {
+    "id": "columns-card-list",
+    "components": [
+      "column"
     ]
   },
   {

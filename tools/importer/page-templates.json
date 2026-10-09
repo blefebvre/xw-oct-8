@@ -153,6 +153,57 @@
           "defaultContent": []
         }
       ]
+    },
+    {
+      "name": "bank-holidays",
+      "urls": [
+        "https://bradescobank.com/en/bank-holidays/"
+      ],
+      "representativeUrl": "https://bradescobank.com/en/bank-holidays/",
+      "description": "Photo banner with title, then a centered card with a two-column holiday list",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".elementor-element-1c4cdd8"
+          ]
+        },
+        {
+          "name": "columns-card-list",
+          "instances": [
+            ".elementor-element-7f5d2f5"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "defaultContent": [],
+          "id": "s1",
+          "name": "Page title banner",
+          "selector": [
+            ".elementor-element-1c4cdd8"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-4264604 h2",
+            ".elementor-element-4468544 p"
+          ],
+          "id": "s2",
+          "name": "Holiday calendar (heading, card, footnote)",
+          "selector": [
+            ".elementor-element-ba583de"
+          ],
+          "style": "light-grey",
+          "blocks": [
+            "columns-card-list"
+          ]
+        }
+      ]
     }
   ],
   "metadata": {

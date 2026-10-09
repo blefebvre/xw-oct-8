@@ -1,0 +1,48 @@
+{
+  "variantName": "hero-banner",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Full-width photo page-title banner that opens an inner page",
+    "summary": "Full-bleed background photo (about 520px tall on desktop) with a white H1 page title, centred by default or left-aligned with the left option, followed by a 19px dark red (#900f15) bar"
+  },
+  "contentPattern": {
+    "structure": "row 1 = background image (UE fields image + imageAlt); row 2 = rich text (UE field text) with the page title as H1 and an optional subtitle paragraph",
+    "source": "get_block_details /block-collection/hero and blocks/hero/_hero.json (model fields image, imageAlt, text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Block name plus options, e.g. Hero Banner or Hero Banner (left)"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Background image (field image/imageAlt)"
+        ]
+      },
+      {
+        "row": 3,
+        "cells": [
+          "Rich text (field text): <h1>Page title</h1>, optional subtitle paragraph"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "hero-banner"
+    ]
+  },
+  "options": [
+    {
+      "class": "left",
+      "label": "Left aligned"
+    }
+  ],
+  "memberVariantIds": [
+    "hero-banner"
+  ],
+  "usage": "Page-title banner at the top of inner pages (about 17 pages on the site, e.g. Bank Holidays).",
+  "reuseGuidance": "Use for any title-only photo banner that opens a page. Choose the left option where the source left-aligns the title. For a banner with copy and a CTA use hero-promo; for video backgrounds use hero-video.",
+  "sourceUrl": "https://bradescobank.com/en/bank-holidays/"
+}

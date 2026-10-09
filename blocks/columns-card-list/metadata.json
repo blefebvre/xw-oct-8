@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-card-list",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Side-by-side lists of short dated items inside a centred white elevated card",
+    "summary": "Centred white card (about 970px wide, light border, soft drop shadow) with two columns split by a 1px #535353 vertical rule; each item has a short red-to-purple gradient dash, the date on one line and the bold item name below. Columns stack with a horizontal rule on mobile."
+  },
+  "contentPattern": {
+    "structure": "one row, one rich-text cell per column; each paragraph is one item: date, line break, bold name",
+    "source": "get_block_details /block-collection/columns and blocks/columns/_columns.json (columns=2, rows=1; column filter allows text)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Columns Card List"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Column 1 rich text: paragraphs like \"Thursday, January 1<br><strong>New Year's Day</strong>\"",
+          "Column 2 rich text: paragraphs in the same pattern"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "columns-card-list"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-card-list"
+  ],
+  "usage": "Bank Holidays calendar: dated holiday list split into two columns.",
+  "reuseGuidance": "Use for short dated or labelled lists shown side by side in a card. Paragraphs or bulleted list items both work. For image/text columns use the base columns block.",
+  "sourceUrl": "https://bradescobank.com/en/bank-holidays/"
+}
