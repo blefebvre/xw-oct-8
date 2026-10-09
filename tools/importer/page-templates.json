@@ -284,6 +284,69 @@
       ],
       "representativeUrl": "https://bradescobank.com/en/other-disclosures/",
       "description": "Photo banner with title, then a grid of disclosure document cards with buttons",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".elementor-element-2530a90"
+          ]
+        },
+        {
+          "name": "cards-download",
+          "instances": [
+            ".elementor-element-0e286b0"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "defaultContent": [],
+          "id": "s1",
+          "name": "Page title banner",
+          "selector": [
+            ".elementor-element-2530a90"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ]
+        },
+        {
+          "defaultContent": [],
+          "id": "s2",
+          "name": "Disclosure documents grid",
+          "selector": [
+            ".elementor-element-0e286b0"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-download"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-8690dff p",
+            ".elementor-element-f2be000 a",
+            ".elementor-element-129171b a",
+            ".elementor-element-306e182 a"
+          ],
+          "id": "s3",
+          "name": "Useful links",
+          "selector": [
+            ".elementor-element-d721a61"
+          ],
+          "style": "centered",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "name": "cra-public-file",
+      "urls": [
+        "https://bradescobank.com/en/cra-public-file/"
+      ],
+      "representativeUrl": "https://bradescobank.com/en/cra-public-file/",
+      "description": "Photo banner with title, intro text and a grid of document cards with buttons",
       "blocks": [],
       "sections": []
     }

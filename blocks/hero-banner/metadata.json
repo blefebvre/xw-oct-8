@@ -47,9 +47,10 @@
     "pagesUsing": [
       "/en/bank-holidays",
       "/en/help/index",
-      "/en/other-disclosures"
+      "/en/other-disclosures",
+      "/en/cra-public-file"
     ],
-    "reuseCount": 2,
+    "reuseCount": 3,
     "lastUsed": "2026-10-09"
   },
   "reuseGuidance": "Use for any title-only photo banner that opens a page. Choose the left option where the source left-aligns the title. For a banner with copy and a CTA use hero-promo; for video backgrounds use hero-video.",
