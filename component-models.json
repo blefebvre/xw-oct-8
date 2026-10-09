@@ -161,6 +161,18 @@
     ]
   },
   {
+    "id": "cards-download-card",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "cards-product-card",
     "fields": [
       {
@@ -263,6 +275,25 @@
   },
   {
     "id": "columns-card-list",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "columns",
+        "value": "",
+        "label": "Columns"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "rows",
+        "value": "",
+        "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "columns-contact",
     "fields": [
       {
         "component": "text",

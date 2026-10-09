@@ -42,7 +42,16 @@
   "memberVariantIds": [
     "hero-banner"
   ],
-  "usage": "Page-title banner at the top of inner pages (about 17 pages on the site, e.g. Bank Holidays).",
+  "usage": {
+    "description": "Page-title banner at the top of inner pages (about 17 pages on the site, e.g. Bank Holidays).",
+    "pagesUsing": [
+      "/en/bank-holidays",
+      "/en/help/index",
+      "/en/other-disclosures"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-10-09"
+  },
   "reuseGuidance": "Use for any title-only photo banner that opens a page. Choose the left option where the source left-aligns the title. For a banner with copy and a CTA use hero-promo; for video backgrounds use hero-video.",
   "sourceUrl": "https://bradescobank.com/en/bank-holidays/"
 }

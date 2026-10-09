@@ -1,0 +1,522 @@
+/* columns-contact: photo bleeding to the left edge, contact text columns, shadowed note card.
+ * Values from source computed styles (bradescobank.com/en/help, .elementor-element-81ae845).
+ * Source breakpoints: 690 (mobile content 88% -> 90%), 768 (photo shown, columns stacked),
+ * 1001 (heading size), 1081 (columns side by side), 1102 (larger type), 1381 (largest type, wider photo).
+ *
+ * Decorated DOM: .columns-contact > .columns-contact-row (display: contents on desktop) >
+ *   row 1: .columns-contact-img-col, text column (branch/HQ/customer service), e-mail column
+ *   row 2 (.columns-contact-extra-row): note card (.columns-contact-wide)
+ */
+
+/* section-context and per-column rules are grouped by breakpoint, not by specificity */
+/* stylelint-disable no-descending-specificity */
+
+/* ---------- page context: the centered heading section before the block ---------- */
+main .section.centered:has(+ .section.columns-contact-container) {
+  min-height: 0;
+  padding: 20px 0;
+}
+
+main .section.centered:has(+ .section.columns-contact-container) h2 {
+  margin: 0 0 16.6px;
+  font-size: 22px;
+  line-height: 29px;
+}
+
+/* ---------- page context: the centered address section after the block ---------- */
+main .section.columns-contact-container + .section.centered {
+  min-height: 0;
+  padding: 10px 0 82.4px;
+  text-align: start;
+}
+
+main .section.columns-contact-container + .section.centered > .default-content-wrapper {
+  padding: 0 20px;
+}
+
+main .section.columns-contact-container + .section.centered p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 20.4px;
+  color: #707070;
+}
+
+/* mobile: the separator dot becomes a line break ("Bradesco Bank" / street address) */
+main .section.columns-contact-container + .section.centered p picture {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ---------- block wrapper: full bleed ---------- */
+main .section.columns-contact-container > .columns-contact-wrapper {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- block (mobile: photo hidden, text columns, note card full width) ---------- */
+.columns-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: #707070;
+}
+
+.columns-contact > .columns-contact-row {
+  display: contents;
+}
+
+.columns-contact > .columns-contact-row > .columns-contact-img-col {
+  display: none;
+}
+
+.columns-contact .columns-contact-col {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.columns-contact .columns-contact-row:first-child > .columns-contact-col:not(.columns-contact-img-col) {
+  padding: 0 calc(6% - 10px) 0 calc(30px + 6%);
+}
+
+.columns-contact .columns-contact-img-col + .columns-contact-col {
+  margin-top: 10px;
+}
+
+.columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col {
+  margin-top: 20px;
+}
+
+.columns-contact .columns-contact-col > * {
+  margin: 0;
+}
+
+/* group headings with the red-to-purple dash (source .ticker-calendar::before) */
+.columns-contact h3 {
+  position: relative;
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 23.1px;
+  text-transform: uppercase;
+  color: #707070;
+}
+
+.columns-contact h3::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: -41px;
+  display: block;
+  width: 27px;
+  height: 7px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #cc092f, #37398c);
+}
+
+/* BRANCH (first heading of the text column) */
+.columns-contact .columns-contact-img-col + .columns-contact-col > h3:first-child {
+  font-size: 16px;
+  line-height: 26.4px;
+}
+
+/* E-MAIL heading (bold in source) */
+.columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col > h3 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 23.1px;
+}
+
+/* HEADQUARTER / CUSTOMER SERVICE */
+.columns-contact .columns-contact-img-col + .columns-contact-col > ul + h3 {
+  margin-top: 20px;
+}
+
+.columns-contact .columns-contact-img-col + .columns-contact-col > p + h3 {
+  margin-top: 30px;
+}
+
+.columns-contact p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 23.1px;
+  color: #707070;
+}
+
+/* "Current Hours" label */
+.columns-contact .columns-contact-img-col + .columns-contact-col > h3:first-child + p {
+  font-size: 12px;
+  line-height: 19.8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* hours lists and the italic notice */
+.columns-contact ul {
+  padding: 0 0 0 35px;
+}
+
+.columns-contact li,
+.columns-contact p:has(> em) {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 23.1px;
+  color: #707070;
+}
+
+/* source keeps the authored runs of spaces (&nbsp;) between day and hours */
+.columns-contact li {
+  white-space: pre-wrap;
+}
+
+/* opening-hours lines ("MONDAY TO FRIDAY" / time) */
+.columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br) {
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br)::first-line {
+  letter-spacing: 2px;
+}
+
+.columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br):has(+ p + p > picture)::first-line {
+  letter-spacing: normal;
+}
+
+/* customer service phone is regular weight in source */
+.columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br) + h3 + p:has(> picture) {
+  font-weight: 400;
+}
+
+/* "or" separator */
+.columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br) + p:not(:has(> br, > picture)) {
+  margin: 15px 0;
+}
+
+/* inline flag icons */
+.columns-contact .columns-contact-col:not(.columns-contact-img-col) picture {
+  display: inline;
+}
+
+.columns-contact .columns-contact-col:not(.columns-contact-img-col) img {
+  display: inline;
+  width: 18px;
+  height: 12px;
+  vertical-align: middle;
+}
+
+/* e-mail column */
+.columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col > p {
+  font-weight: 400;
+}
+
+.columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col > p + p {
+  margin-top: 15px;
+}
+
+.columns-contact strong {
+  font-weight: 700;
+}
+
+.columns-contact a:any-link {
+  color: #cc092f;
+  text-decoration: underline;
+}
+
+.columns-contact a:hover {
+  color: var(--link-hover-color);
+}
+
+/* note card (source .protect-account) */
+.columns-contact .columns-contact-extra-row > .columns-contact-col {
+  position: relative;
+  box-sizing: border-box;
+  margin: 102px 20px 0;
+  padding: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.8px;
+  color: #707070;
+  box-shadow: 0 3px 8px 0 rgb(0 0 0 / 24%);
+}
+
+.columns-contact .columns-contact-extra-row > .columns-contact-col p {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.columns-contact .columns-contact-extra-row > .columns-contact-col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(#cc092f, #37398c);
+}
+
+@media (width >= 690px) {
+  .columns-contact .columns-contact-row:first-child > .columns-contact-col:not(.columns-contact-img-col) {
+    padding: 0 calc(5% - 10px) 0 calc(30px + 5%);
+  }
+}
+
+/* ---------- tablet: photo column + stacked text columns ---------- */
+@media (width >= 768px) {
+  main .section.columns-contact-container + .section.centered {
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  main .section.columns-contact-container + .section.centered > .default-content-wrapper {
+    padding: 0 32px;
+  }
+
+  main .section.columns-contact-container + .section.centered p {
+    font-size: 20px;
+    line-height: 83px;
+  }
+
+  main .section.columns-contact-container + .section.centered p picture {
+    display: inline;
+    height: auto;
+    margin: 0 5px;
+  }
+
+  main .section.columns-contact-container + .section.centered p img {
+    width: 9px;
+    height: 9px;
+    margin-top: -3px;
+    vertical-align: middle;
+  }
+
+  .columns-contact {
+    --columns-contact-photo-width: 305.141px;
+
+    display: grid;
+    grid-template-columns: var(--columns-contact-photo-width) 70px minmax(0, 1fr) 10px;
+    grid-template-rows: auto auto auto 1fr;
+    padding: 0 0 20px;
+  }
+
+  .columns-contact > .columns-contact-row > .columns-contact-img-col {
+    position: relative;
+    display: block;
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    min-height: 700px;
+    overflow: hidden;
+  }
+
+  .columns-contact .columns-contact-img-col picture,
+  .columns-contact .columns-contact-img-col img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+  }
+
+  .columns-contact .columns-contact-img-col img {
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  .columns-contact .columns-contact-row:first-child > .columns-contact-col:not(.columns-contact-img-col) {
+    padding: 0;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col {
+    grid-column: 3;
+    grid-row: 1;
+    width: 48.735%;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > ul + h3 {
+    margin-top: 10px;
+  }
+
+  .columns-contact ul {
+    padding-left: 45px;
+  }
+
+  .columns-contact li,
+  .columns-contact p:has(> em) {
+    font-size: 18px;
+    line-height: 29.7px;
+  }
+
+  .columns-contact .columns-contact-extra-row > .columns-contact-col {
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: start;
+    width: 100%;
+    margin: 60px 0 10px -40px;
+    padding: 10px 30px;
+  }
+}
+
+@media (width >= 900px) {
+  main .section.centered:has(+ .section.columns-contact-container) h2 {
+    margin-bottom: 20.5px;
+    font-size: 35px;
+    line-height: 37px;
+  }
+}
+
+@media (width >= 1001px) {
+  main .section.centered:has(+ .section.columns-contact-container) h2 {
+    margin-bottom: 19.6px;
+    font-size: 32px;
+  }
+}
+
+/* ---------- desktop: text columns side by side ---------- */
+@media (width >= 1081px) {
+  main .section.centered:has(+ .section.columns-contact-container),
+  main .section.columns-contact-container + .section.centered {
+    padding: 28px 0;
+  }
+
+  .columns-contact {
+    --columns-contact-photo-width: 320px;
+
+    grid-template-columns:
+      var(--columns-contact-photo-width) 70px
+      minmax(0, calc((100% - var(--columns-contact-photo-width) - 80px) * 48.735 / 100))
+      20px minmax(0, 1fr) 10px;
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .columns-contact > .columns-contact-row > .columns-contact-img-col {
+    grid-row: 1 / span 3;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col {
+    width: auto;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col {
+    grid-column: 5;
+    grid-row: 1;
+    margin-top: 10px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col > h3 {
+    font-size: 16px;
+    line-height: 26.4px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > ul + h3 {
+    margin-top: 20px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > p + h3 {
+    margin-top: 30px;
+  }
+
+  .columns-contact ul {
+    padding-left: 35px;
+  }
+
+  .columns-contact li,
+  .columns-contact p:has(> em) {
+    font-size: 14px;
+    line-height: 23.1px;
+  }
+
+  .columns-contact .columns-contact-extra-row > .columns-contact-col {
+    grid-column: 3 / span 3;
+    grid-row: 2;
+    margin-top: 40px;
+    padding: 10px 0 10px 50px;
+  }
+
+  .columns-contact .columns-contact-extra-row > .columns-contact-col::before {
+    width: 12px;
+  }
+}
+
+/* ---------- larger type ---------- */
+@media (width >= 1102px) {
+  main .section.centered:has(+ .section.columns-contact-container),
+  main .section.columns-contact-container + .section.centered {
+    min-height: var(--intro-section-min-height);
+    padding: 40px 0;
+  }
+
+  .columns-contact h3,
+  .columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col > h3,
+  .columns-contact p,
+  .columns-contact li,
+  .columns-contact p:has(> em),
+  .columns-contact .columns-contact-img-col + .columns-contact-col > h3:first-child + p {
+    font-size: 16px;
+    line-height: 26.4px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > h3:first-child {
+    font-size: 20px;
+    line-height: 33px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > ul + h3 {
+    margin-top: 30px;
+  }
+
+  .columns-contact .columns-contact-img-col + .columns-contact-col > :last-child {
+    margin-bottom: 30px;
+  }
+
+  .columns-contact ul {
+    padding-left: 40px;
+  }
+
+  .columns-contact .columns-contact-extra-row > .columns-contact-col {
+    width: 85.302%;
+    font-size: 16px;
+    line-height: 26.4px;
+  }
+}
+
+/* ---------- largest type, wider photo ---------- */
+@media (width >= 1381px) {
+  .columns-contact {
+    --columns-contact-photo-width: 414.141px;
+  }
+
+  .columns-contact h3,
+  .columns-contact .columns-contact-img-col + .columns-contact-col + .columns-contact-col > h3,
+  .columns-contact p,
+  .columns-contact li,
+  .columns-contact p:has(> em),
+  .columns-contact .columns-contact-img-col + .columns-contact-col > h3:first-child + p,
+  .columns-contact .columns-contact-img-col + .columns-contact-col > p:has(> br) {
+    font-size: 20px;
+    line-height: 33px;
+  }
+
+  .columns-contact ul {
+    padding-left: 50px;
+  }
+
+  .columns-contact .columns-contact-extra-row > .columns-contact-col {
+    font-size: 16px;
+    line-height: 26.4px;
+  }
+}

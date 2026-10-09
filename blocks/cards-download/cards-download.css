@@ -1,0 +1,60 @@
+/* elevated white card holding the document tiles */
+.cards-download {
+  background-color: #fff;
+  border: 1px solid #f7f7f7;
+  box-shadow: -2px 3px 13px -8px rgb(0 0 0 / 50%);
+}
+
+.cards-download > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-download > ul > li {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  padding: 40px 16px;
+}
+
+.cards-download .cards-download-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.cards-download .cards-download-card-title > *,
+.cards-download .cards-download-cta,
+.cards-download .cards-download-cta a {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  /* four tiles per row; tiles in a shorter last row grow to fill it (7 = 4 + 3) */
+  .cards-download > ul {
+    flex-flow: row wrap;
+  }
+
+  .cards-download > ul > li {
+    flex: 1 1 calc(25% - 1px);
+  }
+
+  /* vertical rule between tiles in the same row (none before a row start) */
+  .cards-download > ul > li + li:not(:nth-child(4n + 1))::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: min(195px, 100% - 32px);
+    transform: translateY(-50%);
+    background: linear-gradient(180deg, #ba0a29 0%, #5c2d91 100%);
+  }
+}

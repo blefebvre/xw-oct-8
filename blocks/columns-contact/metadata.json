@@ -1,0 +1,47 @@
+{
+  "variantName": "columns-contact",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Contact details laid out beside a full-height photo, with a note card under the text columns",
+    "summary": "Left: portrait photo bleeding to the left viewport edge and spanning the full block height. Right: two text columns of contact groups, each H3 (bold, uppercase, #535353) preceded by a short red-to-purple gradient dash; uppercase letter-spaced labels, bulleted hours lists, phone numbers with inline US/Brazil flag icons, red underlined mailto links. Below both text columns: a white note card with soft shadow (0 3px 8px rgba(0,0,0,.24)) and a red-to-purple vertical gradient left border. Stacks on mobile with the photo first."
+  },
+  "contentPattern": {
+    "structure": "3 columns x 2 rows. Row 1: image cell, rich-text cell, rich-text cell. Row 2: empty cell under the image (photo spans it), note rich-text cell, empty cell (note widens across both text columns)",
+    "source": "migration-work/authoring-analysis.json blockStructures.columns-contact; blocks/columns/_columns.json (columns, rows; column cells allow text and image)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Columns Contact"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Image (portrait photo)",
+          "Rich text: H3 group headings (BRANCH, HEADQUARTER, CUSTOMER SERVICE), label paragraphs, bulleted hours lists, phone numbers with inline flag images",
+          "Rich text: H3 E-MAIL, bold inquiry labels with mailto links"
+        ]
+      },
+      {
+        "row": 3,
+        "cells": [
+          "(empty - photo continues)",
+          "Rich text note: \"Note:\" line break and the confidentiality warning",
+          "(empty)"
+        ]
+      }
+    ],
+    "variantsUsed": [
+      "columns-contact"
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-contact"
+  ],
+  "usage": "Help page: contact information (branch hours, phone numbers, e-mail addresses) beside a photo, with a confidentiality note card.",
+  "reuseGuidance": "Use when a photo sits beside one or more text columns and should stay full height while extra rows (notes, disclaimers) sit under the text. Leave the cell under the image empty to let the photo span that row; leave trailing cells empty to widen a cell across the text columns. For plain image/text columns use the base columns block; for dated lists in a card use columns-card-list.",
+  "sourceUrl": "https://bradescobank.com/en/help/"
+}

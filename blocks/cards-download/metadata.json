@@ -1,0 +1,34 @@
+{
+  "variantName": "cards-download",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Grid of downloadable document tiles, each a centred title with a DOWNLOAD button, inside one elevated white card",
+    "summary": "One white elevated card (1px #f7f7f7 border, soft shadow) holding image-less tiles, four per row with a shorter last row widening to fill (7 tiles = 4 + 3). Each tile: centred #535353 25px title paragraph (line breaks kept) above a red pill DOWNLOAD button (#ba0a29, white uppercase, letter-spaced). 1px red-to-purple vertical rules between tiles in a row; tiles stack with no rules on mobile."
+  },
+  "contentPattern": {
+    "structure": "Cards (no images): one row per document with a single rich-text cell (UE field text): title paragraph(s), then a paragraph holding only the DOWNLOAD link to the PDF",
+    "source": "migration-work/authoring-analysis.json blockStructures.cards-download; get_block_details /block-collection/cards (no images); blocks/cards/_cards.json",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Cards Download"
+        ]
+      },
+      {
+        "row": "2..N (one per document)",
+        "cells": [
+          "Rich text (field text): <p>Document title</p><p><a href=\"...pdf\">DOWNLOAD</a></p>"
+        ]
+      }
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-download"
+  ],
+  "usage": "Disclosure / document download grid (Other disclosures page: USA Patriot Act Notice, BCP Disclosure, Form CRS, Reg BI, fee schedules).",
+  "reuseGuidance": "Use for lists of downloadable documents or single-CTA tiles without images. Keep the title as a paragraph and put the link alone in its own paragraph so it renders as the button. Any number of tiles works; rows hold four.",
+  "sourceUrl": "https://bradescobank.com/en/other-disclosures/"
+}

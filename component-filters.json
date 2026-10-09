@@ -11,11 +11,13 @@
       "accordion",
       "button",
       "cards",
+      "cards-download",
       "cards-product",
       "cards-segment",
       "carousel",
       "columns",
       "columns-card-list",
+      "columns-contact",
       "embed",
       "form",
       "fragment",
@@ -38,6 +40,12 @@
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "cards-download",
+    "components": [
+      "cards-download-card"
     ]
   },
   {
@@ -66,6 +74,12 @@
   },
   {
     "id": "columns-card-list",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "columns-contact",
     "components": [
       "column"
     ]

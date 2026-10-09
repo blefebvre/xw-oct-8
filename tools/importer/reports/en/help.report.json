@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "url": "https://bradescobank.com/en/help/",
+  "path": "en/help",
+  "timestamp": "2026-10-09T01:53:09.734Z",
+  "title": "How Can We Help? – Bradesco Bank",
+  "template": "help",
+  "blocks": [
+    "hero-banner",
+    "columns-contact"
+  ]
+}

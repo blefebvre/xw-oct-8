@@ -204,6 +204,88 @@
           ]
         }
       ]
+    },
+    {
+      "name": "help",
+      "urls": [
+        "https://bradescobank.com/en/help/"
+      ],
+      "representativeUrl": "https://bradescobank.com/en/help/",
+      "description": "Photo banner with title, then contact information sections",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".elementor-element-93efab2"
+          ]
+        },
+        {
+          "name": "columns-contact",
+          "instances": [
+            ".elementor-element-81ae845"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "defaultContent": [],
+          "id": "s1",
+          "name": "Page title banner",
+          "selector": [
+            ".elementor-element-93efab2"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-36f6f2d h2"
+          ],
+          "id": "s2",
+          "name": "Contact heading",
+          "selector": [
+            ".elementor-element-3012ebd"
+          ],
+          "style": "centered",
+          "blocks": []
+        },
+        {
+          "defaultContent": [],
+          "id": "s3",
+          "name": "Contact details with photo",
+          "selector": [
+            ".elementor-element-81ae845"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-contact"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-865d32d p"
+          ],
+          "id": "s4",
+          "name": "Address line",
+          "selector": [
+            ".elementor-element-58cd61f"
+          ],
+          "style": "centered",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "name": "other-disclosures",
+      "urls": [
+        "https://bradescobank.com/en/other-disclosures/"
+      ],
+      "representativeUrl": "https://bradescobank.com/en/other-disclosures/",
+      "description": "Photo banner with title, then a grid of disclosure document cards with buttons",
+      "blocks": [],
+      "sections": []
     }
   ],
   "metadata": {
