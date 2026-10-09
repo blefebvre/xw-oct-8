@@ -223,7 +223,21 @@ export default async function decorate(block) {
   if (brandSection) {
     // logos may sit inside the link or in their own paragraphs next to it
     brandLink = brandSection.querySelector('a');
-    const [defaultLogo, stickyLogo, menuLogo] = [...brandSection.querySelectorAll('img')];
+    const logos = [...brandSection.querySelectorAll('img')];
+    // three logos: over-hero, solid bar, drawer. Two logos: solid bar and drawer;
+    // the over-hero logo is then the solid-bar logo rendered in white.
+    let defaultLogo;
+    let stickyLogo;
+    let menuLogo;
+    if (logos.length >= 3) {
+      [defaultLogo, stickyLogo, menuLogo] = logos;
+    } else {
+      [stickyLogo, menuLogo] = logos;
+      if (stickyLogo) {
+        defaultLogo = stickyLogo.cloneNode();
+        defaultLogo.classList.add('nav-logo-inverted');
+      }
+    }
     if (brandLink) {
       const label = brandLink.textContent.trim();
       if (label) brandLink.setAttribute('aria-label', label);

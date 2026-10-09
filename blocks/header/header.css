@@ -141,6 +141,11 @@ header .nav-brand .nav-logo-sticky {
   display: none;
 }
 
+/* white version of a single-color dark logo */
+header .nav-brand .nav-logo-inverted {
+  filter: brightness(0) invert(1);
+}
+
 /* hamburger */
 header .nav-hamburger {
   margin-left: auto;
