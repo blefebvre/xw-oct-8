@@ -1,0 +1,291 @@
+/*
+ * cards-note: separate white shadowed note cards with a red-to-purple gradient bar
+ * on the left edge, optionally led by a small icon.
+ * Source: bradescobank.com/en/security .elementor-element-a2edf52 / -ebf86a1 (text cards)
+ * and .elementor-element-ba0258e (icon cards); values in migration-work/cards-note-extracted.css.
+ * Source breakpoints: 690px (container 88% -> 90%), 768px (1 -> 2 columns, tablet spacing),
+ * 1081px (desktop spacing, 12px bar), 1102px (icon-card text column 79%).
+ */
+
+/* the block spans 88% (90% from 690px) of the viewport up to 1700px */
+main > .section > .cards-note-wrapper {
+  box-sizing: border-box;
+  width: 88%;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* text notes: 10px above the cards, 51px (60px tablet, 100px desktop) below */
+.cards-note {
+  padding: 10px 0 51px;
+}
+
+/* icon notes */
+.cards-note:has(.cards-note-has-icon) {
+  padding: 31px 0 57px;
+}
+
+/* two stacked text blocks in one section: 10px + 14px (18px desktop) between them */
+.cards-note-wrapper:has(+ .cards-note-wrapper) > .cards-note {
+  padding-bottom: 10px;
+}
+
+.cards-note-wrapper + .cards-note-wrapper > .cards-note {
+  padding-top: 14px;
+}
+
+.cards-note > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.cards-note > ul > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 20px 20px 15px 40px;
+  background-color: #fff;
+  box-shadow: 0 3px 8px 0 rgb(0 0 0 / 24%);
+}
+
+/* gradient bar on the left edge */
+.cards-note > ul > li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(#cc092f, #37398c);
+}
+
+.cards-note .cards-note-card-body {
+  box-sizing: border-box;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 27px;
+  color: var(--text-color);
+}
+
+.cards-note .cards-note-card-body p {
+  margin: 0;
+}
+
+/* icon cards: icon column left of the text */
+.cards-note > ul > li.cards-note-has-icon {
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 117px;
+  padding: 0;
+}
+
+.cards-note .cards-note-card-image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex: 0 0 15%;
+  box-sizing: border-box;
+  padding: 10px;
+  line-height: 0;
+}
+
+.cards-note .cards-note-card-image p {
+  margin: 0;
+}
+
+.cards-note .cards-note-card-image img {
+  display: block;
+  width: 22px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.cards-note .cards-note-has-icon .cards-note-card-body {
+  flex: 0 0 85%;
+  padding: 10px;
+  line-height: 21px;
+}
+
+@media (width >= 690px) {
+  main > .section > .cards-note-wrapper {
+    width: 90%;
+  }
+}
+
+@media (width >= 768px) {
+  .cards-note {
+    padding-bottom: 60px;
+  }
+
+  .cards-note:has(.cards-note-has-icon) {
+    padding: 53px 0 60px;
+  }
+
+  .cards-note > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cards-note > ul > li {
+    min-height: 225px;
+    padding: 40px 20px 30px 32px;
+  }
+
+  /* icon cards and an odd last text card take the full row */
+  .cards-note > ul > li.cards-note-has-icon,
+  .cards-note > ul > li.cards-note-wide {
+    grid-column: 1 / -1;
+  }
+
+  .cards-note > ul > li.cards-note-wide {
+    justify-content: flex-start;
+    min-height: 90px;
+    padding: 15px 0 0 33px;
+  }
+
+  .cards-note .cards-note-card-body {
+    font-size: 18px;
+  }
+
+  .cards-note > ul > li.cards-note-has-icon {
+    gap: 20px;
+    min-height: 90px;
+    padding: 18px 92px 18px 52px;
+  }
+
+  .cards-note .cards-note-card-image {
+    flex-basis: 11.508%;
+    align-items: stretch;
+  }
+
+  .cards-note .cards-note-card-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cards-note .cards-note-has-icon .cards-note-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 520.219px;
+    line-height: 27px;
+  }
+}
+
+@media (width >= 1081px) {
+  .cards-note {
+    padding-bottom: 100px;
+  }
+
+  .cards-note:has(.cards-note-has-icon) {
+    padding: 79px 0 80px;
+  }
+
+  .cards-note-wrapper + .cards-note-wrapper > .cards-note {
+    padding-top: 18px;
+  }
+
+  .cards-note > ul > li {
+    justify-content: flex-start;
+    padding: 50px 92px 50px 52px;
+  }
+
+  .cards-note > ul > li::before {
+    width: 12px;
+  }
+
+  .cards-note > ul > li.cards-note-wide {
+    padding: 18px 92px 18px 52px;
+  }
+
+  .cards-note .cards-note-card-body {
+    font-size: 20px;
+  }
+
+  .cards-note .cards-note-card-image {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cards-note .cards-note-card-image img {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .cards-note .cards-note-has-icon .cards-note-card-body {
+    flex-basis: 754.891px;
+  }
+
+  .cards-note > ul > li.cards-note-wide .cards-note-card-body {
+    max-width: 72%;
+  }
+}
+
+@media (width >= 1102px) {
+  .cards-note .cards-note-has-icon .cards-note-card-body {
+    flex-basis: 79%;
+  }
+}
+
+/* heading section right before the notes (source .elementor-element-985c385):
+ * 51px (64px tablet, 100px desktop) above the heading, 36px (20px, 35px) below,
+ * as wide as the cards */
+main .section.centered:has(+ .section.cards-note-container) {
+  min-height: 0;
+  padding: 51px 0 36px;
+}
+
+main .section.centered:has(+ .section.cards-note-container) > .default-content-wrapper {
+  width: 88%;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+main .section.centered:has(+ .section.cards-note-container) h2 {
+  margin: 0 0 16.6px;
+  font-size: 22px;
+  line-height: 29px;
+}
+
+@media (width >= 690px) {
+  main .section.centered:has(+ .section.cards-note-container) > .default-content-wrapper {
+    width: 90%;
+  }
+}
+
+@media (width >= 768px) {
+  main .section.centered:has(+ .section.cards-note-container) {
+    padding: 64px 0 20px;
+  }
+}
+
+@media (width >= 770px) {
+  main .section.centered:has(+ .section.cards-note-container) h2 {
+    margin-bottom: 20.5px;
+    font-size: 35px;
+    line-height: 37px;
+  }
+}
+
+@media (width >= 1000px) {
+  main .section.centered:has(+ .section.cards-note-container) h2 {
+    margin-bottom: 19.6px;
+    font-size: 32px;
+  }
+}
+
+@media (width >= 1081px) {
+  main .section.centered:has(+ .section.cards-note-container) {
+    padding: 100px 0 35px;
+  }
+}

@@ -2,11 +2,10 @@
 /* global WebImporter */
 
 // Parsers
-import heroVideoParser from './parsers/hero-video.js';
-import cardsSegmentParser from './parsers/cards-segment.js';
-import heroStatementParser from './parsers/hero-statement.js';
-import cardsProductParser from './parsers/cards-product.js';
-import heroPromoParser from './parsers/hero-promo.js';
+import heroBannerParser from './parsers/hero-banner.js';
+import cardsNoteParser from './parsers/cards-note.js';
+import accordionTipsParser from './parsers/accordion-tips.js';
+import columnsImageBleedParser from './parsers/columns-image-bleed.js';
 
 // Transformers
 import bradescobankCleanupTransformer from './transformers/bradescobank-cleanup.js';
@@ -14,166 +13,135 @@ import bradescobankSectionsTransformer from './transformers/bradescobank-section
 import bradescobankLinksTransformer from './transformers/bradescobank-links.js';
 
 const PAGE_TEMPLATE = {
-  "name": "home",
+  "name": "security",
   "urls": [
-    "https://bradescobank.com/"
+    "https://bradescobank.com/en/security/"
   ],
-  "representativeUrl": "https://bradescobank.com/",
-  "description": "Bradesco Bank homepage: video hero, client segment tiles, statement band, product tiles and promo banner",
+  "representativeUrl": "https://bradescobank.com/en/security/",
+  "description": "Photo banner, intro columns, accordion of security tips, icon list",
   "blocks": [
     {
-      "name": "hero-video",
+      "name": "hero-banner",
       "instances": [
-        ".elementor-element-b079a4a > .e-con-inner"
+        ".elementor-element-8ea493e"
       ]
     },
     {
-      "name": "cards-segment",
+      "name": "cards-note",
       "instances": [
-        "section.elementor-element-6ff733d",
-        "section.services"
+        ".elementor-element-a2edf52",
+        ".elementor-element-ebf86a1",
+        ".elementor-element-ba0258e"
       ]
     },
     {
-      "name": "hero-statement",
+      "name": "accordion-tips",
       "instances": [
-        ".elementor-element-e5bf88e > .e-con-inner"
+        ".elementor-element-349fe54"
       ]
     },
     {
-      "name": "cards-product",
+      "name": "columns-image-bleed",
       "instances": [
-        ".elementor-element-c28d200",
-        ".elementor-element-6cab8f9"
-      ]
-    },
-    {
-      "name": "hero-promo",
-      "instances": [
-        ".elementor-element-f4e421d"
+        ".elementor-element-5358476"
       ]
     }
   ],
-  "urlPattern": "/",
   "sections": [
     {
-      "id": "rc3",
-      "name": "Hero video banner",
+      "defaultContent": [],
+      "id": "s1",
+      "name": "Page title banner",
       "selector": [
-        ".elementor-element-b079a4a"
+        ".elementor-element-8ea493e"
       ],
       "style": null,
       "blocks": [
-        "hero-video"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "rc5",
-      "name": "Tailored offerings intro",
-      "selector": [
-        ".elementor-element-c766b99"
-      ],
-      "style": "centered",
-      "blocks": [],
-      "defaultContent": [
-        ".elementor-element-37e512d h2"
+        "hero-banner"
       ]
     },
     {
-      "id": "rc6",
-      "name": "Client segment tiles",
+      "defaultContent": [
+        ".elementor-element-f3490dc h2"
+      ],
+      "id": "s2",
+      "name": "Protection heading",
       "selector": [
-        "section.elementor-element-6ff733d",
-        "section.services"
-      ],
-      "style": null,
-      "blocks": [
-        "cards-segment"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "rc8",
-      "name": "Solutions statement video band",
-      "selector": [
-        ".elementor-element-e5bf88e"
-      ],
-      "style": null,
-      "blocks": [
-        "hero-statement"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "rc9",
-      "name": "Products intro",
-      "selector": [
-        ".elementor-element-0faff3c"
+        ".elementor-element-985c385"
       ],
       "style": "centered",
-      "blocks": [],
-      "defaultContent": [
-        ".elementor-element-147aee5 h2"
+      "blocks": []
+    },
+    {
+      "defaultContent": [],
+      "id": "s3",
+      "name": "Protection note cards",
+      "selector": [
+        ".elementor-element-a2edf52"
+      ],
+      "style": null,
+      "blocks": [
+        "cards-note"
       ]
     },
     {
-      "id": "rc10",
-      "name": "Products row 1",
-      "selector": [
-        ".elementor-element-c28d200"
-      ],
-      "style": null,
-      "blocks": [
-        "cards-product"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "rc11",
-      "name": "Products row 2",
-      "selector": [
-        ".elementor-element-6cab8f9"
-      ],
-      "style": null,
-      "blocks": [
-        "cards-product"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "rc12",
-      "name": "Market trends intro",
-      "selector": [
-        ".elementor-element-3326291"
-      ],
-      "style": "centered",
-      "blocks": [],
       "defaultContent": [
-        ".elementor-element-69c93f6 h2"
+        ".elementor-element-ee12537 h2"
+      ],
+      "id": "s4",
+      "name": "Protect yourself tips",
+      "selector": [
+        ".elementor-element-14b83e7"
+      ],
+      "style": "light-grey, centered",
+      "blocks": [
+        "accordion-tips"
       ]
     },
     {
-      "id": "rc13",
-      "name": "Exclusive content promo banner",
+      "defaultContent": [
+        ".elementor-element-6576b90 h2"
+      ],
+      "id": "s5",
+      "name": "Security tips heading",
       "selector": [
-        ".elementor-element-f4e421d"
+        ".elementor-element-60799a5"
+      ],
+      "style": "centered",
+      "blocks": []
+    },
+    {
+      "defaultContent": [],
+      "id": "s6",
+      "name": "Avoid fraud",
+      "selector": [
+        ".elementor-element-5358476"
       ],
       "style": null,
       "blocks": [
-        "hero-promo"
+        "columns-image-bleed"
+      ]
+    },
+    {
+      "defaultContent": [],
+      "id": "s7",
+      "name": "Fraud note cards",
+      "selector": [
+        ".elementor-element-ba0258e"
       ],
-      "defaultContent": []
+      "style": null,
+      "blocks": [
+        "cards-note"
+      ]
     }
   ]
 };
 
 const parsers = {
-  'hero-video': heroVideoParser,
-  'cards-segment': cardsSegmentParser,
-  'hero-statement': heroStatementParser,
-  'cards-product': cardsProductParser,
-  'hero-promo': heroPromoParser,
+  'hero-banner': heroBannerParser,
+  'cards-note': cardsNoteParser,
+  'accordion-tips': accordionTipsParser,
+  'columns-image-bleed': columnsImageBleedParser,
 };
 
 const transformers = [bradescobankCleanupTransformer, bradescobankSectionsTransformer, bradescobankLinksTransformer];

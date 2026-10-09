@@ -35,10 +35,10 @@ var CustomImportScript = (() => {
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-  // tools/importer/import-bank-holidays.js
-  var import_bank_holidays_exports = {};
-  __export(import_bank_holidays_exports, {
-    default: () => import_bank_holidays_default
+  // tools/importer/import-security.js
+  var import_security_exports = {};
+  __export(import_security_exports, {
+    default: () => import_security_default
   });
 
   // tools/importer/parsers/hero-banner.js
@@ -204,51 +204,294 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/columns-card-list.js
-  function textOf(nodes) {
-    return nodes.map((n) => n.textContent).join(" ").replace(/\s+/g, " ").trim();
+  // tools/importer/parsers/cards-note.js
+  function clean(text) {
+    return (text || "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
   }
-  function buildItem(widget, document) {
-    const container = widget.querySelector(".elementor-widget-container") || widget;
-    const src = container.querySelector("h1, h2, h3, h4, h5, h6, p") || container;
-    if (!src.textContent.trim()) return null;
-    let date = "";
-    let name = "";
-    const nameEl = src.querySelector("span, strong, b");
-    if (nameEl) {
-      name = nameEl.textContent.replace(/\s+/g, " ").trim();
-      date = textOf([...src.childNodes].filter((n) => n !== nameEl && !(n.contains && n.contains(nameEl))));
-    } else {
-      const br = src.querySelector("br");
-      if (br) {
-        const kids = [...src.childNodes];
-        const idx = kids.indexOf(br);
-        date = textOf(kids.slice(0, idx));
-        name = textOf(kids.slice(idx + 1));
-      } else {
-        date = src.textContent.replace(/\s+/g, " ").trim();
+  function absoluteUrl(href) {
+    if (!href) return "";
+    if (/^(mailto|tel|data):/i.test(href) || href.startsWith("#")) return href;
+    if (href.startsWith("//")) return `https:${href}`;
+    if (/^https?:/i.test(href)) return href;
+    if (href.startsWith("./") || href.startsWith("../")) return href;
+    try {
+      return new URL(href, "https://bradescobank.com/").href;
+    } catch (e) {
+      return href;
+    }
+  }
+  function isHidden(el) {
+    return !!(el.closest && el.closest(".elementor-hidden-desktop"));
+  }
+  function widgetContent(widget, document) {
+    const container = widget.querySelector(":scope > .elementor-widget-container") || widget;
+    const out = [];
+    let para = null;
+    const flush = () => {
+      if (para && clean(para.textContent)) out.push(para);
+      para = null;
+    };
+    [...container.childNodes].forEach((node) => {
+      if (node.nodeType === 3) {
+        if (!clean(node.textContent)) return;
+        if (!para) para = document.createElement("p");
+        para.appendChild(document.createTextNode(node.textContent.replace(/\s+/g, " ")));
+        return;
       }
-    }
-    const p = document.createElement("p");
-    if (date) p.appendChild(document.createTextNode(date));
-    if (date && name) p.appendChild(document.createElement("br"));
-    if (name) {
-      const strong = document.createElement("strong");
-      strong.textContent = name;
-      p.appendChild(strong);
-    }
-    return p;
+      if (node.nodeType !== 1) return;
+      if (/^(P|UL|OL|H[1-6]|BLOCKQUOTE)$/.test(node.tagName)) {
+        flush();
+        if (!clean(node.textContent)) return;
+        node.querySelectorAll("a[href]").forEach((a) => a.setAttribute("href", absoluteUrl(a.getAttribute("href"))));
+        out.push(node);
+        return;
+      }
+      if (!para) para = document.createElement("p");
+      para.appendChild(node);
+    });
+    flush();
+    return out;
   }
   function parse2(element, { document }) {
-    let columns = [...element.querySelectorAll(":scope > .e-con")];
-    if (!columns.length) columns = [element];
-    const row = columns.map((col) => {
-      const widgets = [...col.querySelectorAll(".elementor-widget-text-editor, .elementor-widget-heading")];
-      const items = widgets.map((w) => buildItem(w, document)).filter(Boolean);
-      return items.length ? items : "";
+    const cards = [...element.querySelectorAll(".protect-account")].filter((c) => !isHidden(c));
+    const cells = [];
+    cards.forEach((card) => {
+      const own = (w) => w.closest(".protect-account") === card && !isHidden(w);
+      const srcImg = [...card.querySelectorAll(".elementor-widget-image img")].find(own);
+      const texts = [...card.querySelectorAll(".elementor-widget-text-editor, .elementor-widget-heading")].filter(own).flatMap((w) => widgetContent(w, document));
+      if (!srcImg && !texts.length) return;
+      const imageCell = document.createElement("div");
+      if (srcImg && srcImg.getAttribute("src")) {
+        const img = document.createElement("img");
+        img.src = absoluteUrl(srcImg.getAttribute("src"));
+        img.alt = clean(srcImg.getAttribute("alt"));
+        imageCell.appendChild(document.createComment(" field:image "));
+        imageCell.appendChild(img);
+      }
+      const textCell = document.createElement("div");
+      if (texts.length) {
+        textCell.appendChild(document.createComment(" field:text "));
+        texts.forEach((n) => textCell.appendChild(n));
+      }
+      cells.push([imageCell, textCell]);
     });
-    const cells = [row];
-    const block = WebImporter.Blocks.createBlock(document, { name: "columns-card-list", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "cards-note", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/accordion-tips.js
+  var ICON_BASE = "https://bradescobank.com/wp-content/uploads/2024/06/";
+  var FALLBACK_ICONS = {
+    "yourself-protect": {
+      1: `${ICON_BASE}icon-security-1-e1717622897112.png`,
+      2: `${ICON_BASE}icon-security-2-e1717622309241.png`,
+      3: `${ICON_BASE}icon-security-3-e1717622015213.png`,
+      4: `${ICON_BASE}icon-security-4-e1717622080513.png`
+    }
+  };
+  function clean2(text) {
+    return (text || "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
+  }
+  function absoluteUrl2(href) {
+    if (!href) return "";
+    if (/^(mailto|tel|data):/i.test(href) || href.startsWith("#")) return href;
+    if (href.startsWith("//")) return `https:${href}`;
+    if (/^https?:/i.test(href)) return href;
+    if (href.startsWith("./") || href.startsWith("../")) return href;
+    try {
+      return new URL(href, "https://bradescobank.com/").href;
+    } catch (e) {
+      return href;
+    }
+  }
+  function pickUrl2(value) {
+    if (!value || value === "none") return null;
+    const m = value.match(/url\(\s*["']?([^"')]+)["']?\s*\)/);
+    return m ? m[1] : null;
+  }
+  function collectRules(document) {
+    const out = [];
+    const walk = (rules) => {
+      [...rules || []].forEach((rule) => {
+        if (rule.selectorText && rule.style) out.push(rule);
+        else if (rule.cssRules) walk(rule.cssRules);
+      });
+    };
+    [...document.styleSheets || []].forEach((sheet) => {
+      let rules;
+      try {
+        rules = sheet.cssRules;
+      } catch (e) {
+        return;
+      }
+      walk(rules);
+    });
+    return out;
+  }
+  function iconsFromStylesheets(element, document) {
+    const scopes = [...element.classList].filter((c) => c === "yourself-protect" || /^elementor-element-[0-9a-f]{6,}$/.test(c) || !c.startsWith("elementor")).map((c) => new RegExp(`\\.${c.replace(/[-]/g, "\\-")}(?![\\w-])`));
+    if (!scopes.length) return {};
+    const icons = {};
+    collectRules(document).forEach((rule) => {
+      rule.selectorText.split(",").forEach((sel) => {
+        if (!/::?(before|after)/.test(sel)) return;
+        const tab = sel.match(/\[data-tab=["']?(\d+)["']?\]/);
+        if (!tab || !scopes.some((re) => re.test(sel))) return;
+        const url = pickUrl2(rule.style.backgroundImage || rule.style.background) || pickUrl2(rule.style.content);
+        if (url) icons[tab[1]] = url;
+      });
+    });
+    return icons;
+  }
+  function fallbackIcons(element) {
+    const key = Object.keys(FALLBACK_ICONS).find((c) => element.classList.contains(c));
+    return key ? FALLBACK_ICONS[key] : {};
+  }
+  function parse3(element, { document }) {
+    const icons = __spreadValues(__spreadValues({}, fallbackIcons(element)), iconsFromStylesheets(element, document));
+    const items = [...element.querySelectorAll(".elementor-accordion-item")];
+    const cells = [];
+    items.forEach((item, index) => {
+      const titleEl = item.querySelector(".elementor-tab-title");
+      const label = clean2((item.querySelector(".elementor-accordion-title") || titleEl || {}).textContent);
+      const content = item.querySelector(".elementor-tab-content");
+      if (!label && !(content && clean2(content.textContent))) return;
+      const summaryCell = document.createElement("div");
+      if (label) {
+        summaryCell.appendChild(document.createComment(" field:summary "));
+        summaryCell.appendChild(document.createTextNode(label));
+      }
+      const textCell = document.createElement("div");
+      if (content && clean2(content.textContent)) {
+        textCell.appendChild(document.createComment(" field:text "));
+        content.querySelectorAll("a[href]").forEach((a) => a.setAttribute("href", absoluteUrl2(a.getAttribute("href"))));
+        [...content.childNodes].forEach((n) => {
+          if (n.nodeType === 3 && !clean2(n.textContent)) return;
+          if (n.nodeType === 3) {
+            const p = document.createElement("p");
+            p.textContent = clean2(n.textContent);
+            textCell.appendChild(p);
+          } else if (n.nodeType === 1) {
+            textCell.appendChild(n);
+          }
+        });
+      }
+      const tab = titleEl && titleEl.getAttribute("data-tab") || String(index + 1);
+      const iconCell = document.createElement("div");
+      const iconUrl = icons[tab];
+      if (iconUrl) {
+        const img = document.createElement("img");
+        img.src = absoluteUrl2(iconUrl);
+        img.alt = "";
+        iconCell.appendChild(document.createComment(" field:image "));
+        iconCell.appendChild(img);
+      }
+      cells.push([summaryCell, textCell, iconCell]);
+    });
+    const block = WebImporter.Blocks.createBlock(document, { name: "accordion-tips", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/columns-image-bleed.js
+  function clean3(text) {
+    return (text || "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
+  }
+  function absoluteUrl3(href) {
+    if (!href) return "";
+    if (/^(mailto|tel|data):/i.test(href) || href.startsWith("#")) return href;
+    if (href.startsWith("//")) return `https:${href}`;
+    if (/^https?:/i.test(href)) return href;
+    if (href.startsWith("./") || href.startsWith("../")) return href;
+    try {
+      return new URL(href, "https://bradescobank.com/").href;
+    } catch (e) {
+      return href;
+    }
+  }
+  function pickUrl3(bg) {
+    if (!bg || bg === "none") return null;
+    const m = bg.match(/url\(\s*["']?([^"')]+)["']?\s*\)/);
+    return m ? m[1] : null;
+  }
+  function backgroundUrl2(el, document) {
+    const idClass = [...el.classList].find((c) => /^elementor-element-[0-9a-f]{6,}$/.test(c));
+    if (idClass && document.styleSheets) {
+      const re = new RegExp(`\\.${idClass}(?![\\w-])`);
+      for (const sheet of [...document.styleSheets]) {
+        let rules;
+        try {
+          rules = sheet.cssRules;
+        } catch (e) {
+          continue;
+        }
+        for (const rule of [...rules || []]) {
+          if (!rule.selectorText || !rule.style) continue;
+          const first = rule.selectorText.split(",")[0];
+          if (re.test(first) && !/::?(before|after)/.test(first)) {
+            const url = pickUrl3(rule.style.backgroundImage || rule.style.background);
+            if (url) return url;
+          }
+        }
+      }
+    }
+    const inline = pickUrl3(el.style && (el.style.backgroundImage || el.style.background));
+    if (inline) return inline;
+    if (document.defaultView && document.defaultView.getComputedStyle) {
+      try {
+        return pickUrl3(document.defaultView.getComputedStyle(el).backgroundImage);
+      } catch (e) {
+      }
+    }
+    return null;
+  }
+  function isHidden2(el) {
+    return !!(el.closest && el.closest(".elementor-hidden-desktop"));
+  }
+  function parse4(element, { document }) {
+    const children = [...element.children].filter((c) => c.matches(".e-con") && !isHidden2(c));
+    const photoWrap = element.querySelector(".elementor-element-98d6419") || children.find((c) => !c.querySelector(".elementor-widget-text-editor, .elementor-widget-heading")) || null;
+    const textWrap = element.querySelector(".elementor-element-a35c121") || children.find((c) => c !== photoWrap) || null;
+    let photo = null;
+    if (photoWrap) {
+      const src = photoWrap.querySelector("img");
+      const url = src && src.getAttribute("src") || backgroundUrl2(photoWrap, document);
+      if (url) {
+        photo = document.createElement("img");
+        photo.src = absoluteUrl3(url);
+        photo.alt = clean3(src && src.getAttribute("alt"));
+      }
+    }
+    const textCell = [];
+    if (textWrap) {
+      const widgets = [...textWrap.querySelectorAll(".elementor-widget-text-editor, .elementor-widget-heading")].filter((w) => !isHidden2(w));
+      widgets.forEach((w, wi) => {
+        const container = w.querySelector(":scope > .elementor-widget-container") || w;
+        const blocks = [...container.children].filter((n) => clean3(n.textContent));
+        if (wi === 0) {
+          const lead = clean3(container.textContent);
+          if (lead) {
+            const p = document.createElement("p");
+            const strong = document.createElement("strong");
+            strong.textContent = lead;
+            p.appendChild(strong);
+            textCell.push(p);
+          }
+          return;
+        }
+        if (!blocks.length && clean3(container.textContent)) {
+          const p = document.createElement("p");
+          p.textContent = clean3(container.textContent);
+          textCell.push(p);
+          return;
+        }
+        blocks.forEach((n) => {
+          n.querySelectorAll("a[href]").forEach((a) => a.setAttribute("href", absoluteUrl3(a.getAttribute("href"))));
+          textCell.push(n);
+        });
+      });
+    }
+    const cells = [[photo || "", textCell.length ? textCell : ""]];
+    const block = WebImporter.Blocks.createBlock(document, { name: "columns-image-bleed", cells });
     element.replaceWith(block);
   }
 
@@ -400,25 +643,39 @@ var CustomImportScript = (() => {
     });
   }
 
-  // tools/importer/import-bank-holidays.js
+  // tools/importer/import-security.js
   var PAGE_TEMPLATE = {
-    "name": "bank-holidays",
+    "name": "security",
     "urls": [
-      "https://bradescobank.com/en/bank-holidays/"
+      "https://bradescobank.com/en/security/"
     ],
-    "representativeUrl": "https://bradescobank.com/en/bank-holidays/",
-    "description": "Photo banner with title, then a centered card with a two-column holiday list",
+    "representativeUrl": "https://bradescobank.com/en/security/",
+    "description": "Photo banner, intro columns, accordion of security tips, icon list",
     "blocks": [
       {
         "name": "hero-banner",
         "instances": [
-          ".elementor-element-1c4cdd8"
+          ".elementor-element-8ea493e"
         ]
       },
       {
-        "name": "columns-card-list",
+        "name": "cards-note",
         "instances": [
-          ".elementor-element-7f5d2f5"
+          ".elementor-element-a2edf52",
+          ".elementor-element-ebf86a1",
+          ".elementor-element-ba0258e"
+        ]
+      },
+      {
+        "name": "accordion-tips",
+        "instances": [
+          ".elementor-element-349fe54"
+        ]
+      },
+      {
+        "name": "columns-image-bleed",
+        "instances": [
+          ".elementor-element-5358476"
         ]
       }
     ],
@@ -428,7 +685,7 @@ var CustomImportScript = (() => {
         "id": "s1",
         "name": "Page title banner",
         "selector": [
-          ".elementor-element-1c4cdd8"
+          ".elementor-element-8ea493e"
         ],
         "style": null,
         "blocks": [
@@ -437,24 +694,85 @@ var CustomImportScript = (() => {
       },
       {
         "defaultContent": [
-          ".elementor-element-4264604 h2",
-          ".elementor-element-4468544 p"
+          ".elementor-element-f3490dc h2"
         ],
         "id": "s2",
-        "name": "Holiday calendar (heading, card, footnote)",
+        "name": "Protection heading",
         "selector": [
-          ".elementor-element-ba583de"
+          ".elementor-element-985c385"
         ],
-        "style": "light-grey",
+        "style": "centered",
+        "blocks": []
+      },
+      {
+        "defaultContent": [],
+        "id": "s3",
+        "name": "Protection note cards",
+        "selector": [
+          ".elementor-element-a2edf52"
+        ],
+        "style": null,
         "blocks": [
-          "columns-card-list"
+          "cards-note"
+        ]
+      },
+      {
+        "defaultContent": [
+          ".elementor-element-ee12537 h2"
+        ],
+        "id": "s4",
+        "name": "Protect yourself tips",
+        "selector": [
+          ".elementor-element-14b83e7"
+        ],
+        "style": "light-grey, centered",
+        "blocks": [
+          "accordion-tips"
+        ]
+      },
+      {
+        "defaultContent": [
+          ".elementor-element-6576b90 h2"
+        ],
+        "id": "s5",
+        "name": "Security tips heading",
+        "selector": [
+          ".elementor-element-60799a5"
+        ],
+        "style": "centered",
+        "blocks": []
+      },
+      {
+        "defaultContent": [],
+        "id": "s6",
+        "name": "Avoid fraud",
+        "selector": [
+          ".elementor-element-5358476"
+        ],
+        "style": null,
+        "blocks": [
+          "columns-image-bleed"
+        ]
+      },
+      {
+        "defaultContent": [],
+        "id": "s7",
+        "name": "Fraud note cards",
+        "selector": [
+          ".elementor-element-ba0258e"
+        ],
+        "style": null,
+        "blocks": [
+          "cards-note"
         ]
       }
     ]
   };
   var parsers = {
     "hero-banner": parse,
-    "columns-card-list": parse2
+    "cards-note": parse2,
+    "accordion-tips": parse3,
+    "columns-image-bleed": parse4
   };
   var transformers = [transform, transform2, transform3];
   function executeTransformers(hookName, element, payload) {
@@ -479,7 +797,7 @@ var CustomImportScript = (() => {
     });
     return pageBlocks;
   }
-  var import_bank_holidays_default = {
+  var import_security_default = {
     transform: (payload) => {
       const { document, url, params } = payload;
       const main = document.body;
@@ -509,5 +827,5 @@ var CustomImportScript = (() => {
       }];
     }
   };
-  return __toCommonJS(import_bank_holidays_exports);
+  return __toCommonJS(import_security_exports);
 })();

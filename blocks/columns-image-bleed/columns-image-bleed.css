@@ -1,0 +1,153 @@
+/*
+ * columns-image-bleed: photo column bleeding to the viewport edge beside a text column.
+ * Values from source computed styles (bradescobank.com/en/security, .elementor-element-5358476).
+ * Source breakpoints: mobile < 768px (stacked), tablet 768-1024px, desktop >= 1025px.
+ */
+
+/* the block spans the full viewport so the photo can reach the edge */
+main > .section > .columns-image-bleed-wrapper {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.columns-image-bleed .columns-image-bleed-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* photo: cover-cropped background-style image, anchored to the bottom centre */
+.columns-image-bleed .columns-image-bleed-img-col {
+  position: relative;
+  min-height: 204px;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.columns-image-bleed .columns-image-bleed-img-col picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.columns-image-bleed .columns-image-bleed-img-col img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+}
+
+/* copy: bold label paragraph, then body paragraphs */
+.columns-image-bleed .columns-image-bleed-text-col {
+  box-sizing: border-box;
+  padding: 20px 15px 0 20px;
+  color: var(--text-color);
+}
+
+.columns-image-bleed .columns-image-bleed-text-col p {
+  margin: 0 0 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+.columns-image-bleed .columns-image-bleed-text-col strong {
+  font-weight: 700;
+}
+
+.columns-image-bleed .columns-image-bleed-text-col > p:first-child:has(> strong:only-child) {
+  margin-bottom: 20px;
+}
+
+.columns-image-bleed .columns-image-bleed-text-col > :last-child {
+  margin-bottom: 0;
+}
+
+/* preceding centred heading band (source .elementor-element-60799a5) */
+main > .section.centered:has(+ .section.columns-image-bleed-container) {
+  min-height: 0;
+  padding: 30px 0 26px;
+}
+
+main > .section.centered:has(+ .section.columns-image-bleed-container) h2 {
+  margin: 0 0 16.6px;
+  font-size: 22px;
+  line-height: 29px;
+}
+
+@media (width >= 768px) {
+  main > .section.centered:has(+ .section.columns-image-bleed-container) {
+    padding: 37px 0 36px;
+  }
+
+  .columns-image-bleed .columns-image-bleed-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .columns-image-bleed .columns-image-bleed-row.columns-image-bleed-img-end {
+    flex-direction: row-reverse;
+  }
+
+  .columns-image-bleed .columns-image-bleed-img-col {
+    flex: 0 0 50.645%;
+    min-height: 253px;
+  }
+
+  .columns-image-bleed .columns-image-bleed-text-col {
+    flex: 0 0 44%;
+    padding: 0;
+  }
+
+  .columns-image-bleed .columns-image-bleed-text-col p {
+    margin-bottom: 27px;
+    font-size: 18px;
+  }
+}
+
+@media (width >= 770px) {
+  main > .section.centered:has(+ .section.columns-image-bleed-container) h2 {
+    margin-bottom: 20.5px;
+    font-size: 35px;
+    line-height: 37px;
+  }
+}
+
+@media (width >= 1000px) {
+  main > .section.centered:has(+ .section.columns-image-bleed-container) h2 {
+    margin-bottom: 19.6px;
+    font-size: 32px;
+  }
+}
+
+@media (width >= 1025px) {
+  main > .section.centered:has(+ .section.columns-image-bleed-container) {
+    padding: 72px 0 50px;
+  }
+
+  .columns-image-bleed .columns-image-bleed-img-col {
+    min-height: 300px;
+  }
+
+  .columns-image-bleed .columns-image-bleed-text-col {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0 0 0 30px;
+  }
+
+  .columns-image-bleed .columns-image-bleed-row.columns-image-bleed-img-end .columns-image-bleed-text-col {
+    padding: 0 30px 0 0;
+  }
+
+  .columns-image-bleed .columns-image-bleed-text-col p {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  .columns-image-bleed .columns-image-bleed-text-col > p:not(:first-child) {
+    width: 522px;
+    max-width: 100%;
+  }
+}

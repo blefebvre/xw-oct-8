@@ -83,6 +83,38 @@
       "id": "blocks",
       "components": [
         {
+          "title": "Accordion Tips",
+          "id": "accordion-tips",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Accordion Tips",
+                  "filter": "accordion-tips"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Accordion Tips Item",
+          "id": "accordion-tips-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Accordion Tips Item",
+                  "model": "accordion-tips-item",
+                  "summary": "Lorem Ipsum",
+                  "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur volutpat consequat dui, sit amet ...</p>"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Accordion",
           "id": "accordion",
           "plugins": {
@@ -169,6 +201,36 @@
                 "template": {
                   "name": "Cards Icon Card",
                   "model": "cards-icon-card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Cards Note",
+          "id": "cards-note",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Cards Note",
+                  "filter": "cards-note"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Cards Note Card",
+          "id": "cards-note-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Cards Note Card",
+                  "model": "cards-note-card"
                 }
               }
             }
@@ -319,6 +381,21 @@
                 "template": {
                   "columns": "3",
                   "rows": "2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Image Bleed",
+          "id": "columns-image-bleed",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
                 }
               }
             }

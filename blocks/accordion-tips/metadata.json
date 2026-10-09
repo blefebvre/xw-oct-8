@@ -1,0 +1,36 @@
+{
+  "variantName": "accordion-tips",
+  "baseBlock": "accordion",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Expandable tip panels shown as separate white shadowed cards, each title optionally led by an icon and followed by a chevron; first item open",
+    "summary": "Separate white panels with a 0 4px 12px rgba(0,0,0,.1) shadow and ~20px gaps, on a light-grey section band. Title row ~61px tall: optional red line icon on the left, 16px/700 #535353 label, chevron on the right (down when closed, up when open). Body: left-aligned bold sub-heading paragraphs, paragraphs and bulleted lists. The first item is open on load. On the source the icons are CSS-drawn; here they are an optional per-item image and the title renders without an icon when it is not set."
+  },
+  "contentPattern": {
+    "structure": "One row per item with cells: label (UE field summary), body rich text (field text), then an optional icon image (fields image + imageAlt). Rows with only label and body render without an icon",
+    "source": "migration-work/authoring-analysis.json blockStructures.accordion-tips; blocks/accordion/_accordion.json",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Accordion Tips"
+        ]
+      },
+      {
+        "row": "2..N (one per item)",
+        "cells": [
+          "Label text (field summary), e.g. Your identity",
+          "Rich text (field text): <p><strong>Sub-heading</strong></p><p>...</p><ul><li>...</li></ul>",
+          "Optional icon image (field image, alt in imageAlt)"
+        ]
+      }
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "accordion-tips"
+  ],
+  "usage": "Security page: four security tip panels (Your identity, Your computer, Your smartphone, Your business) under the \"Things you can do to protect yourself\" heading in a light-grey section.",
+  "reuseGuidance": "Use for FAQ or tip lists that should look like separate shadowed cards rather than a bordered list. Put the label in the first cell and the answer in the second; add an icon image in the third cell (UE Icon field) to show it before the title. The first item always opens on load. For a plain bordered accordion use the base accordion block.",
+  "sourceUrl": "https://bradescobank.com/en/security/"
+}

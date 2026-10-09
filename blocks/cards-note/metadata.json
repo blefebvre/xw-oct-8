@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-note",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Separate white shadowed text note cards with a red-to-purple gradient bar on the left edge, optionally led by a small icon",
+    "summary": "White cards with square corners and a 0 3px 8px rgba(0,0,0,.24) shadow; a 12px vertical linear-gradient(#cc092f, #37398c) bar on the left edge; #535353 20px/27px 500 text, padding 0 92px 0 52px on desktop. Text-only cards sit 2 per row with 20px gaps and an odd last card spanning the full row; cards with an icon image sit one per row (full width) with a ~48px red line icon in a fixed column left of the text. Stacks to one column on mobile."
+  },
+  "contentPattern": {
+    "structure": "One row per card. Text-only card: one rich-text cell (in UE the unset icon field leaves an empty first cell, which is dropped). Icon card: two cells, the icon image (UE fields image + imageAlt) then rich text",
+    "source": "migration-work/authoring-analysis.json blockStructures.cards-note; blocks/cards/_cards.json",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Cards Note"
+        ]
+      },
+      {
+        "row": "2..N text-only card",
+        "cells": [
+          "Rich text (field text): <p>Note text</p>"
+        ]
+      },
+      {
+        "row": "2..N icon card",
+        "cells": [
+          "Icon image (field image, alt in imageAlt)",
+          "Rich text (field text): <p>Note text with optional <a href=\"mailto:...\">link</a></p>"
+        ]
+      }
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-note"
+  ],
+  "usage": "Security page: three text-only account-protection notes (2-up with the third spanning) and three icon notes about phishing, suspicious calls and confidential information (one per row).",
+  "reuseGuidance": "Use for short highlighted notices or callouts shown as separate shadowed cards with the gradient left bar. Leave the icon out for 2-up text notes (an odd last note spans the row); add an icon to render a full-width note with the icon on the left. Not for icon + heading + button tiles (use cards-icon) or photo cards (use cards).",
+  "sourceUrl": "https://bradescobank.com/en/security/"
+}

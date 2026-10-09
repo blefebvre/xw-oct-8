@@ -1,0 +1,280 @@
+/*
+ * accordion-tips: separate white shadowed panels with an optional leading icon,
+ * a title and a chevron (down closed, up open). Values from the source computed
+ * styles (bradescobank.com/en/security, .yourself-protect accordion).
+ * Source breakpoints: 767/768/769, 999.98 and 1080px.
+ */
+
+/* ---------- section: grey band, centered heading (source .elementor-element-14b83e7) ---------- */
+main .section.accordion-tips-container {
+  --accordion-tips-inner-width: 88%;
+
+  min-height: 0;
+  padding: 23px 0 40px;
+}
+
+main .section.accordion-tips-container > div {
+  box-sizing: border-box;
+  width: var(--accordion-tips-inner-width);
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+main .section.accordion-tips-container > .default-content-wrapper {
+  width: var(--accordion-tips-inner-width);
+  padding-bottom: 13px;
+}
+
+main .section.accordion-tips-container > .default-content-wrapper h2 {
+  width: 250px;
+  max-width: 100%;
+  margin: 0 auto 16.6px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 29px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+main .section.accordion-tips-container > .accordion-tips-wrapper {
+  margin-top: 20px;
+}
+
+/* ---------- block ---------- */
+.accordion-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--text-color);
+  text-align: start;
+}
+
+.accordion-tips details.accordion-tips-item {
+  margin: 0;
+  box-shadow: 0 5px 9px 0 rgb(0 0 0 / 10%);
+}
+
+.accordion-tips details > summary {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 16px 20px 20px 70px;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-color);
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-tips details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-tips details.accordion-tips-item-active > summary {
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 10%);
+}
+
+/* chevron (Font Awesome chevron-down, 23px, fill = text colour); up when open, swapped instantly */
+.accordion-tips details > summary::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 23px;
+  height: 23px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.accordion-tips details.accordion-tips-item-active > summary::after {
+  transform: rotate(180deg);
+}
+
+.accordion-tips .accordion-tips-item-title {
+  display: block;
+  margin-right: 27.6px;
+}
+
+/* icon: 30x30 box, image contained top-left (source background-size: contain) */
+.accordion-tips .accordion-tips-item-icon {
+  position: absolute;
+  top: 12px;
+  left: 26px;
+  width: 30px;
+  height: 30px;
+  line-height: 0;
+}
+
+.accordion-tips .accordion-tips-item-icon picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.accordion-tips .accordion-tips-item-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left top;
+}
+
+/* per-icon offsets authored on the source for the four security icons */
+.accordion-tips details:nth-child(1) .accordion-tips-item-icon {
+  top: 15px;
+}
+
+.accordion-tips details:nth-child(2) .accordion-tips-item-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.accordion-tips details:nth-child(3) .accordion-tips-item-icon {
+  left: 29px;
+}
+
+.accordion-tips details > summary:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* body */
+.accordion-tips details .accordion-tips-item-body {
+  padding: 30px 20px 40px 25px;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.accordion-tips details:not([open]) .accordion-tips-item-body {
+  display: none;
+}
+
+.accordion-tips .accordion-tips-item-body.accordion-tips-animating {
+  overflow: hidden;
+}
+
+.accordion-tips .accordion-tips-item-body p {
+  margin: 0 0 1.5em;
+}
+
+.accordion-tips .accordion-tips-item-body ul,
+.accordion-tips .accordion-tips-item-body ol {
+  margin: 0;
+  padding: 0 0 0 35px;
+}
+
+.accordion-tips .accordion-tips-item-body li {
+  margin: 0 0 15px -20px;
+}
+
+.accordion-tips .accordion-tips-item-body li::marker {
+  color: #cc092f;
+}
+
+.accordion-tips .accordion-tips-item-body > :last-child,
+.accordion-tips .accordion-tips-item-body li:last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 768px) {
+  main .section.accordion-tips-container {
+    --accordion-tips-inner-width: 90%;
+
+    padding: 47px 0 63px;
+  }
+
+  main .section.accordion-tips-container > .default-content-wrapper {
+    padding-bottom: 24px;
+  }
+
+  main .section.accordion-tips-container > .accordion-tips-wrapper {
+    padding: 10px;
+  }
+
+  .accordion-tips details > summary {
+    padding: 17px 38px 20px 120px;
+    font-size: 24px;
+  }
+
+  .accordion-tips details > summary::after {
+    top: 17px;
+    right: 38px;
+  }
+
+  .accordion-tips .accordion-tips-item-title {
+    margin-right: 34.5px;
+  }
+
+  .accordion-tips details .accordion-tips-item-body {
+    padding: 30px 50px 40px 30px;
+    font-size: 16px;
+  }
+
+  .accordion-tips .accordion-tips-item-body ul,
+  .accordion-tips .accordion-tips-item-body ol {
+    padding-left: 40px;
+  }
+}
+
+/* desktop icons: natural size, centred on a 68.5px axis, 15px from the top */
+@media (width >= 769px) {
+  main .section.accordion-tips-container > .default-content-wrapper h2 {
+    width: auto;
+  }
+
+  .accordion-tips details:nth-child(n) .accordion-tips-item-icon {
+    top: 15px;
+    left: 45px;
+    display: flex;
+    justify-content: center;
+    width: 47px;
+    height: auto;
+  }
+
+  .accordion-tips .accordion-tips-item-icon picture {
+    width: auto;
+    height: auto;
+  }
+
+  .accordion-tips .accordion-tips-item-icon img {
+    width: auto;
+    height: auto;
+  }
+}
+
+@media (width >= 770px) {
+  main .section.accordion-tips-container > .default-content-wrapper h2 {
+    margin-bottom: 20.5px;
+    font-size: 35px;
+    line-height: 37px;
+  }
+}
+
+@media (width >= 1000px) {
+  main .section.accordion-tips-container > .default-content-wrapper h2 {
+    margin-bottom: 19.6px;
+    font-size: 32px;
+  }
+}
+
+@media (width >= 1081px) {
+  main .section.accordion-tips-container {
+    padding: 71px 0 50px;
+  }
+
+  main .section.accordion-tips-container > .default-content-wrapper {
+    padding-bottom: 54px;
+  }
+
+  .accordion-tips {
+    gap: 32px;
+  }
+
+  .accordion-tips details .accordion-tips-item-body {
+    padding: 30px 71px 40px 45px;
+  }
+}

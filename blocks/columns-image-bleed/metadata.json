@@ -1,0 +1,35 @@
+{
+  "variantName": "columns-image-bleed",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "A photo that bleeds to the left viewport edge beside one vertically centred text column",
+    "summary": "One row, full-bleed band ~300px tall on desktop. Left: photo at half the viewport width, flush with the left edge, cover-cropped to the full row height. Right (20px gap, ~60px left padding): bold #535353 20px/27px title paragraph and #535353 20px/27px body paragraphs, max ~600px wide, vertically centred. Stacks on mobile with the photo first."
+  },
+  "contentPattern": {
+    "structure": "2 columns x 1 row: image cell (the photo alone), rich-text cell. If the image is authored in the second cell it bleeds to the right edge instead",
+    "source": "migration-work/authoring-analysis.json blockStructures.columns-image-bleed; blocks/columns/_columns.json (column cells allow text, image, button, title)",
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Columns Image Bleed"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Image (photo only)",
+          "Rich text: <p><strong>Avoid fraud</strong></p><p>...</p><p>...</p>"
+        ]
+      }
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-image-bleed"
+  ],
+  "usage": "Security page: \"Avoid fraud\" photo beside a bold title paragraph and two paragraphs, under the Security Tips heading.",
+  "reuseGuidance": "Use for a single photo + text pairing where the photo should run to the viewport edge and fill the row height. Put only the image in one cell and the copy in the other. For contained image/text columns use the base columns block; for photo + multi-column contact layouts use columns-contact.",
+  "sourceUrl": "https://bradescobank.com/en/security/"
+}

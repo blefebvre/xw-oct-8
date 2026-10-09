@@ -8,6 +8,7 @@ import columnsContactParser from './parsers/columns-contact.js';
 // Transformers
 import bradescobankCleanupTransformer from './transformers/bradescobank-cleanup.js';
 import bradescobankSectionsTransformer from './transformers/bradescobank-sections.js';
+import bradescobankLinksTransformer from './transformers/bradescobank-links.js';
 
 const PAGE_TEMPLATE = {
   "name": "help",
@@ -87,7 +88,7 @@ const parsers = {
   'columns-contact': columnsContactParser,
 };
 
-const transformers = [bradescobankCleanupTransformer, bradescobankSectionsTransformer];
+const transformers = [bradescobankCleanupTransformer, bradescobankSectionsTransformer, bradescobankLinksTransformer];
 
 function executeTransformers(hookName, element, payload) {
   const enhancedPayload = { ...payload, template: PAGE_TEMPLATE };

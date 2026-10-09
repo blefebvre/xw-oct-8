@@ -9,16 +9,19 @@
     "id": "section",
     "components": [
       "accordion",
+      "accordion-tips",
       "button",
       "cards",
       "cards-download",
       "cards-icon",
+      "cards-note",
       "cards-product",
       "cards-segment",
       "carousel",
       "columns",
       "columns-card-list",
       "columns-contact",
+      "columns-image-bleed",
       "embed",
       "form",
       "fragment",
@@ -38,6 +41,12 @@
     ]
   },
   {
+    "id": "accordion-tips",
+    "components": [
+      "accordion-tips-item"
+    ]
+  },
+  {
     "id": "accordion",
     "components": [
       "accordion-item"
@@ -53,6 +62,12 @@
     "id": "cards-icon",
     "components": [
       "cards-icon-card"
+    ]
+  },
+  {
+    "id": "cards-note",
+    "components": [
+      "cards-note-card"
     ]
   },
   {
@@ -87,6 +102,12 @@
   },
   {
     "id": "columns-contact",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "columns-image-bleed",
     "components": [
       "column"
     ]

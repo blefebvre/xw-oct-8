@@ -49,9 +49,10 @@
       "/en/help/index",
       "/en/other-disclosures",
       "/en/cra-public-file",
-      "/en/security"
+      "/en/security",
+      "/en/careers"
     ],
-    "reuseCount": 4,
+    "reuseCount": 5,
     "lastUsed": "2026-10-09"
   },
   "reuseGuidance": "Use for any title-only photo banner that opens a page. Choose the left option where the source left-aligns the title. For a banner with copy and a CTA use hero-promo; for video backgrounds use hero-video.",

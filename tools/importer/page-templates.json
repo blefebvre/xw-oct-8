@@ -407,6 +407,130 @@
       ],
       "representativeUrl": "https://bradescobank.com/en/security/",
       "description": "Photo banner, intro columns, accordion of security tips, icon list",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".elementor-element-8ea493e"
+          ]
+        },
+        {
+          "name": "cards-note",
+          "instances": [
+            ".elementor-element-a2edf52",
+            ".elementor-element-ebf86a1",
+            ".elementor-element-ba0258e"
+          ]
+        },
+        {
+          "name": "accordion-tips",
+          "instances": [
+            ".elementor-element-349fe54"
+          ]
+        },
+        {
+          "name": "columns-image-bleed",
+          "instances": [
+            ".elementor-element-5358476"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "defaultContent": [],
+          "id": "s1",
+          "name": "Page title banner",
+          "selector": [
+            ".elementor-element-8ea493e"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-f3490dc h2"
+          ],
+          "id": "s2",
+          "name": "Protection heading",
+          "selector": [
+            ".elementor-element-985c385"
+          ],
+          "style": "centered",
+          "blocks": []
+        },
+        {
+          "defaultContent": [],
+          "id": "s3",
+          "name": "Protection note cards",
+          "selector": [
+            ".elementor-element-a2edf52"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-note"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-ee12537 h2"
+          ],
+          "id": "s4",
+          "name": "Protect yourself tips",
+          "selector": [
+            ".elementor-element-14b83e7"
+          ],
+          "style": "light-grey, centered",
+          "blocks": [
+            "accordion-tips"
+          ]
+        },
+        {
+          "defaultContent": [
+            ".elementor-element-6576b90 h2"
+          ],
+          "id": "s5",
+          "name": "Security tips heading",
+          "selector": [
+            ".elementor-element-60799a5"
+          ],
+          "style": "centered",
+          "blocks": []
+        },
+        {
+          "defaultContent": [],
+          "id": "s6",
+          "name": "Avoid fraud",
+          "selector": [
+            ".elementor-element-5358476"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-image-bleed"
+          ]
+        },
+        {
+          "defaultContent": [],
+          "id": "s7",
+          "name": "Fraud note cards",
+          "selector": [
+            ".elementor-element-ba0258e"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-note"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "careers",
+      "urls": [
+        "https://bradescobank.com/en/careers/"
+      ],
+      "representativeUrl": "https://bradescobank.com/en/careers/",
+      "description": "Photo banner with bottom-left title, then tabs (USA / Brazil) with job listings",
       "blocks": [],
       "sections": []
     }

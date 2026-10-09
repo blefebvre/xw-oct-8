@@ -467,6 +467,38 @@ var CustomImportScript = (() => {
     }
   }
 
+  // tools/importer/transformers/bradescobank-links.js
+  var MIGRATED_PAGES = [
+    "/",
+    "/en/bank-holidays",
+    "/en/cra-public-file",
+    "/en/help",
+    "/en/other-disclosures",
+    "/en/security"
+  ];
+  var SOURCE_HOSTS = ["bradescobank.com", "www.bradescobank.com"];
+  var LOCALES = ["en", "pt", "es"];
+  function toSitePath(url) {
+    if (!SOURCE_HOSTS.includes(url.hostname)) return null;
+    let path = url.pathname.replace(/\/+$/, "") || "/";
+    if (/^\/(wp-content|wp-admin|wp-json|assets)\//.test(path) || /\.[a-z0-9]{2,5}$/i.test(path)) return null;
+    if (path !== "/" && !LOCALES.includes(path.split("/")[1])) path = `/en${path}`;
+    return path === "/en" ? "/" : path;
+  }
+  function transform3(hookName, element, payload) {
+    if (hookName !== "afterTransform") return;
+    element.querySelectorAll("a[href]").forEach((a) => {
+      let url;
+      try {
+        url = new URL(a.getAttribute("href"), "https://bradescobank.com/");
+      } catch (e) {
+        return;
+      }
+      const path = toSitePath(url);
+      if (path && MIGRATED_PAGES.includes(path)) a.setAttribute("href", `${path}${url.hash}`);
+    });
+  }
+
   // tools/importer/import-cra-public-file.js
   var PAGE_TEMPLATE = {
     "name": "cra-public-file",
@@ -532,7 +564,7 @@ var CustomImportScript = (() => {
     "hero-banner": parse,
     "cards-icon": parse2
   };
-  var transformers = [transform, transform2];
+  var transformers = [transform, transform2, transform3];
   function executeTransformers(hookName, element, payload) {
     const enhancedPayload = __spreadProps(__spreadValues({}, payload), { template: PAGE_TEMPLATE });
     transformers.forEach((fn) => {
